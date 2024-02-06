@@ -1,26 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import {
-  NavBar,
-  SideBar,
-  AllArticles,
-  Profile,
-  About,
-  SingleArticle,
-} from "./index";
-
-import { fetchAllArticles } from "../utils/utils";
+import { NavBar, SideBar, AllArticles, SingleArticle } from "./index";
 
 function App() {
   const [sideBarStatus, setSideBarStatus] = useState("sidebar--inactive");
-  const [allArticles, setAllArticles] = useState([]);
   const [currentArticle, setCurrentArticle] = useState([]);
-
-  useEffect(() => {
-    fetchAllArticles().then((res) => {
-      setAllArticles(res);
-    });
-  }, []);
 
   return (
     <main className="container">
@@ -33,19 +17,12 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={
-            <AllArticles
-              allArticles={allArticles}
-              setCurrentArticle={setCurrentArticle}
-            />
-          }
+          element={<AllArticles setCurrentArticle={setCurrentArticle} />}
         />
         <Route
           path="/SingleArticle"
           element={<SingleArticle currentArticle={currentArticle} />}
         />
-        <Route path="/Profile" element={<Profile />} />
-        <Route path="/About" element={<About />} />
       </Routes>
     </main>
   );
