@@ -17,68 +17,85 @@
   height: 100vh;
   width: 100vw;
 }
-.header--active {
-  background-color: #e3090967;
-  height: 4em;
+
+.header {
+  background-color: rgb(255, 253, 253);
+  height: 5em;
+  padding: 0 2em;
   position: relative;
   z-index: 2;
 }
 
-.header--inactive {
-  background-color: #e3090967;
-  height: 4em;
-  /* overflow: hidden; */
-}
-
-.header__title--logo {
+.header__title h1 {
   background: linear-gradient(to left, #a6bad9, #b45266);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  width: 100vw;
   font-size: 3em;
-  flex-direction: row;
-  padding: 2%;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  -webkit-text-stroke: 1.5px rgba(250, 235, 215, 0.416);
+  -webkit-text-stroke: 3px rgba(22, 23, 33, 0.233);
 }
 
-.header__navbar {
-  float: right;
+.navbar {
+  width: 100%;
+  height: 5em;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.header__navbar--button-content {
-  border-bottom-left-radius: 1em;
-  background-color: #b45266a8;
-  margin-top: -0.3em;
-}
-
-.header__navbar--link {
+.header__links {
+  display: none;
   padding: 1em;
   text-align: right;
   font-size: 1em;
   list-style: none;
 }
 
+.header__navbar--link {
+  padding: 0.5em;
+}
+
 .header__navbar--link a {
   text-decoration: none;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  color: aliceblue;
+  color: rgb(0, 0, 0);
   font-weight: 600;
 }
 
 .header__navbar--button {
-  color: antiquewhite;
-  float: right;
+  color: rgb(0, 0, 0);
   background-color: transparent;
   border: transparent;
-  margin-top: -5.5em;
-  padding: 0 1.5em;
-  padding-top: 2em;
+  cursor: pointer;
+  display: block;
+}
+
+.dropdown_menu {
+  display: block;
+  position: absolute;
+  right: 1rem;
+  height: 0;
+  top: 4em;
+  width: 90%;
+  background-color: rgba(240, 248, 255, 0.325);
+  backdrop-filter: blur(1em);
+  border-radius: 1em;
+  text-align: center;
+  overflow: hidden;
+  transition: height 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdown_menu li {
+  padding: 0.7em;
+}
+
+.dropdown_menu.open {
+  height: 12em;
 }
 
 .sidebar--inactive {
-  background-color: #a6bad990;
-  flex-direction: row-reverse;
+  background-color: #ffffff9a;
   height: 2em;
   position: relative;
   z-index: 1;
@@ -104,6 +121,14 @@ img {
   border-radius: 1em;
 }
 
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
 /* xs screens */
 @media (min-width: 320px) {
 }
@@ -118,6 +143,19 @@ img {
 
 /* tablet */
 @media (min-width: 768px) {
+  .header__links {
+    display: flex;
+  }
+  .header__navbar--link {
+    display: inline-flex;
+  }
+
+  .header__navbar--button {
+    display: none;
+  }
+  .dropdown_menu {
+    display: none;
+  }
 }
 
 /* laptop */
