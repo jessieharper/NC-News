@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
-import { Box } from "./styled-components/Box";
+import { Box } from "./styled-components/StyledComponents";
 import { fetchSingleArticle } from "../../utils/utils";
 
 export default function AllArticles({ allArticles, setCurrentArticle }) {
