@@ -1,16 +1,27 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { Box } from "./styled-components/Box";
+import { fetchSingleArticle } from "../../utils/utils";
 
-export default function AllArticles({ allArticles }) {
+export default function AllArticles({ allArticles, setCurrentArticle }) {
+  const handleClick = (article) => {
+    fetchSingleArticle(article.article_id).then((res) => {
+      setCurrentArticle(res[0]);
+    });
+  };
+
   return (
     <section className="articles">
       <h2>Articles</h2>
       {allArticles.map((article) => {
         return (
-          <Box>
+          <Box
+            key={article.article_id}
+            id={article.article_id}
+            onClick={() => handleClick(article)}
+          >
             <Link to="/SingleArticle">
               <h3>{article.title}</h3>
             </Link>
