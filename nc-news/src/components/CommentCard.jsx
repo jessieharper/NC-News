@@ -1,14 +1,10 @@
 import { Expandable } from "./styled-components/StyledComponents";
+import DeleteComments from "./DeleteComments";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faThumbsUp,
-  faThumbsDown,
-  faHeart,
-  faHeartCrack,
-} from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faHeartCrack } from "@fortawesome/free-solid-svg-icons";
 
-export default function CommentCard({ comments, user }) {
+export default function CommentCard({ setComments, comments, user }) {
   return (
     <Expandable>
       {comments.map((comment) => {
@@ -25,7 +21,13 @@ export default function CommentCard({ comments, user }) {
                 icon={+comment.votes < 0 ? faHeartCrack : faHeart}
               />
               {"  "}
-              {comment.votes}
+              {comment.votes}{" "}
+              {comment.author === user && (
+                <DeleteComments
+                  setComments={setComments}
+                  comment_id={comment.comment_id}
+                />
+              )}
             </div>
             <br />
           </section>

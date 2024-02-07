@@ -39,3 +39,9 @@ export const postComment = (article_id, username, body) => {
     })
     .catch((err) => console.log(err));
 };
+
+export const deleteComment = (comment_id) => {
+  return myApi
+    .delete(`/comments/${comment_id}`)
+    .catch((err) => console.log(err));
+};

@@ -35,7 +35,7 @@ export default function Comments({ user }) {
           user={user}
         />
       </header>
-      <CommentCard comments={comments} user={user} />
+      <CommentCard setComments={setComments} comments={comments} user={user} />
     </section>
   );
 }
