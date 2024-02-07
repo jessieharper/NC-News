@@ -19,10 +19,10 @@ export default function RatingButtonManager({ articleId, setVote }) {
     dislikesFromLocalStorage
   );
   const [isLikeButtonActive, setIsLikeButtonActive] = useState(
-    likedArticles.length === 0 ? true : false
+    likedArticles.includes(articleId) ? false : true
   );
   const [isDislikeButtonActive, setIsDislikeButtonActive] = useState(
-    dislikedArticles.length === 0 ? true : false
+    dislikedArticles.includes(articleId) ? false : true
   );
 
   // Adding likes to local storage//
@@ -37,8 +37,11 @@ export default function RatingButtonManager({ articleId, setVote }) {
   // HandleClick Event //
 
   const handleDislikeClick = (inc_vote) => {
+    if (isDislikeButtonActive && !isLikeButtonActive) {
+      inc_vote = -2;
+    }
     setVote(inc_vote);
-    if (inc_vote === -1 && !dislikedArticles.includes(articleId)) {
+    if (inc_vote < 0 && !dislikedArticles.includes(articleId)) {
       setDislikedArticles((currDislikes) => {
         return [...currDislikes, articleId];
       });
@@ -48,7 +51,7 @@ export default function RatingButtonManager({ articleId, setVote }) {
       setIsDislikeButtonActive(false);
       setIsLikeButtonActive(true);
     }
-    if (inc_vote === 1) {
+    if (inc_vote > 0) {
       setDislikedArticles((currDislikes) => {
         return currDislikes.filter((id) => id !== articleId);
       });
@@ -57,8 +60,11 @@ export default function RatingButtonManager({ articleId, setVote }) {
   };
 
   const handleLikeClick = (inc_vote) => {
+    if (isLikeButtonActive && !isDislikeButtonActive) {
+      inc_vote = 2;
+    }
     setVote(inc_vote);
-    if (inc_vote === 1 && !likedArticles.includes(articleId)) {
+    if (inc_vote > 0 && !likedArticles.includes(articleId)) {
       setLikedArticles((currLikes) => {
         return [...currLikes, articleId];
       });
@@ -68,7 +74,7 @@ export default function RatingButtonManager({ articleId, setVote }) {
       setIsLikeButtonActive(false);
       setIsDislikeButtonActive(true);
     }
-    if (inc_vote === -1) {
+    if (inc_vote < 0) {
       setLikedArticles((currLikes) => {
         return currLikes.filter((id) => id !== articleId);
       });

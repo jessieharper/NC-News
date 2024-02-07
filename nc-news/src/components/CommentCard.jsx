@@ -8,7 +8,7 @@ import {
   faHeartCrack,
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function CommentCard({ comments }) {
+export default function CommentCard({ comments, user }) {
   return (
     <Expandable>
       {comments.map((comment) => {

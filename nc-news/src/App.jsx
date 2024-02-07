@@ -11,6 +11,7 @@ import {
 
 function App() {
   const [sideBarStatus, setSideBarStatus] = useState("sidebar--inactive");
+  const [user, setUser] = useState("cooljmessy");
 
   return (
     <main className="container">
@@ -22,7 +23,10 @@ function App() {
       </nav>
       <Routes>
         <Route path="/articles" element={<AllArticles />} />
-        <Route path="/articles/:articleId" element={<SingleArticle />} />
+        <Route
+          path="/articles/:articleId"
+          element={<SingleArticle user={user} />}
+        />
         <Route
           path="/articles/:articleId/comments"
           element={
