@@ -11,7 +11,7 @@ import { Box } from "./styled-components/StyledComponents";
 import { Comments, ArticleRating } from "../index";
 import { fetchSingleArticle } from "../../utils/utils";
 
-export default function SingleArticle() {
+export default function SingleArticle({ user }) {
   const [voteCounter, setVoteCounter] = useState(0);
   const [currentArticle, setCurrentArticle] = useState([]);
   const { articleId } = useParams();
@@ -49,7 +49,7 @@ export default function SingleArticle() {
         />
       </Box>
       <Box>
-        <Comments currentArticle={currentArticle} />
+        <Comments user={user} />
       </Box>
     </>
   );

@@ -7,6 +7,7 @@ import SingleArticle from "./components/SingleArticle";
 import Comments from "./components/Comments";
 import CommentCard from "./components/CommentCard";
 import ArticleCard from "./components/ArticleCard";
+import PostComment from "./components/PostComment";
 
 export {
   NavBar,
@@ -18,4 +19,5 @@ export {
   Comments,
   CommentCard,
   ArticleCard,
+  PostComment,
 };
