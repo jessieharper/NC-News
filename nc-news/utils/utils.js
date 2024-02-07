@@ -21,3 +21,12 @@ export const fetchArticleComments = (article_id) => {
     return response.data.comments;
   });
 };
+
+export const patchArticleVotes = (article_id, vote) => {
+  return myApi
+    .patch(`/articles/${article_id}`, { inc_votes: vote })
+    .then((response) => {
+      return response.data.comment;
+    })
+    .catch((err) => console.log(err));
+};

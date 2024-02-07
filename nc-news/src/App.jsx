@@ -1,10 +1,16 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { NavBar, SideBar, AllArticles, SingleArticle } from "./index";
+import {
+  NavBar,
+  SideBar,
+  AllArticles,
+  SingleArticle,
+  Comments,
+  ArticleRating,
+} from "./index";
 
 function App() {
   const [sideBarStatus, setSideBarStatus] = useState("sidebar--inactive");
-  const [currentArticle, setCurrentArticle] = useState([]);
 
   return (
     <main className="container">
@@ -15,13 +21,16 @@ function App() {
         <SideBar setSideBarStatus={setSideBarStatus} />
       </nav>
       <Routes>
+        <Route path="/articles" element={<AllArticles />} />
+        <Route path="/articles/:articleId" element={<SingleArticle />} />
         <Route
-          path="/"
-          element={<AllArticles setCurrentArticle={setCurrentArticle} />}
-        />
-        <Route
-          path="/SingleArticle"
-          element={<SingleArticle currentArticle={currentArticle} />}
+          path="/articles/:articleId/comments"
+          element={
+            <>
+              <Comments />
+              <ArticleRating />
+            </>
+          }
         />
       </Routes>
     </main>

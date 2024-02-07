@@ -2,19 +2,14 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { Box } from "./styled-components/StyledComponents";
-import { fetchSingleArticle } from "../../utils/utils";
 
-export default function ArticleCard({ article, setCurrentArticle }) {
-  const handleClick = (article) => {
-    fetchSingleArticle(article.article_id).then((res) => {
-      setCurrentArticle(res[0]);
-    });
-  };
+export default function ArticleCard({ article }) {
   return (
-    <Box id={article.article_id} onClick={() => handleClick(article)}>
-      <Link to="/SingleArticle">
+    <Box id={article.article_id}>
+      <Link to={`/articles/${article.article_id}`}>
         <h3>{article.title}</h3>
       </Link>
+      <br />
       <p>Posted by {article.author}</p>
       <img src={article.article_img_url} />
       <div className="articles__box-footer">

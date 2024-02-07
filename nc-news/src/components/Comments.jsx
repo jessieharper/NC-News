@@ -1,20 +1,22 @@
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchArticleComments } from "../../utils/utils";
 import CommentCard from "./CommentCard";
 
-export default function Comments({ currentArticle }) {
+export default function Comments() {
   const [comments, setComments] = useState([]);
+  const { articleId } = useParams();
 
   useEffect(() => {
-    fetchArticleComments(currentArticle.article_id).then((res) => {
+    fetchArticleComments(articleId).then((res) => {
       setComments(res);
     });
-  }, [currentArticle]);
+  }, [articleId]);
 
   return (
     <section>
       <header>
-        <h3>Comments</h3>
+        <h4>Comments</h4>
       </header>
       <CommentCard comments={comments} />
     </section>

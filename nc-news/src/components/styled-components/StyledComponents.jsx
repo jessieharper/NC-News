@@ -15,6 +15,13 @@ const Box = styled.article`
   justify-content: center;
 `;
 
+const ActiveLikeButton = styled.button`
+  color: rgb(11, 81, 26);
+`;
+const ActiveDislikeButton = styled.button`
+  color: rgb(227, 9, 9);
+`;
+
 const Expandable = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -32,4 +39,4 @@ const Expandable = ({ children }) => {
   );
 };
 // overflow: hidden;
-export { Box, Expandable };
+export { Box, Expandable, ActiveLikeButton, ActiveDislikeButton };
