@@ -16,20 +16,20 @@ export default function NavBar() {
   return (
     <nav className="navbar">
       <div className="header__title">
-        <Link to="/">
+        <Link to="/articles">
           <h1>NCN</h1>
         </Link>
       </div>
       <div className="header__links">
         <ul>
           <li className="header__navbar--link">
-            <Link to="/profile">PROFILE</Link>
+            <Link to="#">PROFILE</Link>
           </li>
           <li className="header__navbar--link">
-            <Link to="/">ARTICLES</Link>
+            <Link to="/articles">ARTICLES</Link>
           </li>
           <li className="header__navbar--link">
-            <Link to="/about">ABOUT</Link>
+            <Link to="#">ABOUT</Link>
           </li>
           <li className="header__navbar--link">
             <Link to="#">SIGN OUT</Link>
@@ -42,16 +42,16 @@ export default function NavBar() {
 
       <div className={tripleBarStatus}>
         <li className="header__navbar--link">
-          <Link to="/profile">PROFILE</Link>
+          <Link to="#">EXAMPLE</Link>
         </li>
         <li className="header__navbar--link">
-          <Link to="/">ARTICLES</Link>
+          <Link to="/articles">ARTICLES</Link>
         </li>
         <li className="header__navbar--link">
-          <Link to="/about">ABOUT</Link>
+          <Link to="#">EXAMPLE</Link>
         </li>
         <li className="header__navbar--link">
-          <Link to="#">SIGN OUT</Link>
+          <Link to="#">EXAMPLE</Link>
         </li>
       </div>
     </nav>

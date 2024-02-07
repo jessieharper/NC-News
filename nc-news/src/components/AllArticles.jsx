@@ -3,7 +3,7 @@ import ArticleCard from "./ArticleCard";
 
 import { fetchAllArticles } from "../../utils/utils";
 
-export default function AllArticles({ setCurrentArticle }) {
+export default function AllArticles() {
   const [allArticles, setAllArticles] = useState([]);
 
   useEffect(() => {
@@ -11,17 +11,12 @@ export default function AllArticles({ setCurrentArticle }) {
       setAllArticles(res);
     });
   }, []);
+
   return (
     <section className="articles">
-      <h2>Articles</h2>
+      <h2>All Articles</h2>
       {allArticles.map((article) => {
-        return (
-          <ArticleCard
-            key={article.article_id}
-            article={article}
-            setCurrentArticle={setCurrentArticle}
-          />
-        );
+        return <ArticleCard key={article.article_id} article={article} />;
       })}
     </section>
   );

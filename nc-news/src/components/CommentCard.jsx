@@ -1,7 +1,12 @@
 import { Expandable } from "./styled-components/StyledComponents";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
+import {
+  faThumbsUp,
+  faThumbsDown,
+  faHeart,
+  faHeartCrack,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function CommentCard({ comments }) {
   return (
@@ -17,8 +22,9 @@ export default function CommentCard({ comments }) {
             </p>
             <div>
               <FontAwesomeIcon
-                icon={+comment.votes < 0 ? faThumbsDown : faThumbsUp}
-              />{" "}
+                icon={+comment.votes < 0 ? faHeartCrack : faHeart}
+              />
+              {"  "}
               {comment.votes}
             </div>
             <br />
