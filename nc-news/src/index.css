@@ -162,6 +162,10 @@
   margin-top: 5%;
 }
 
+.comment__delete {
+  float: right;
+}
+
 h1 {
   font-size: 2rem;
 }
