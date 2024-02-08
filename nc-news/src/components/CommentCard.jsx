@@ -9,7 +9,7 @@ export default function CommentCard({ setComments, comments, user }) {
     <Expandable>
       {comments.map((comment) => {
         return (
-          <section key={comment.comment_id}>
+          <section className="comment" key={comment.comment_id}>
             <p>{comment.body}</p>
             <br></br>
             <p>
@@ -29,7 +29,6 @@ export default function CommentCard({ setComments, comments, user }) {
                 />
               )}
             </div>
-            <br />
           </section>
         );
       })}

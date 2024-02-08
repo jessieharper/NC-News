@@ -6,41 +6,44 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 
-const likesFromLocalStorage = JSON.parse(
-  localStorage.getItem("likedArticles") || "[]"
-);
-const dislikesFromLocalStorage = JSON.parse(
-  localStorage.getItem("dislikedArticles") || "[]"
-);
-
-export default function RatingButtonManager({ articleId, setVote }) {
+export default function RatingButtonManager({ articleId, setVoteCounter }) {
+  const likesFromLocalStorage = JSON.parse(
+    localStorage.getItem("likedArticles") || "[]"
+  );
+  const dislikesFromLocalStorage = JSON.parse(
+    localStorage.getItem("dislikedArticles") || "[]"
+  );
   const [likedArticles, setLikedArticles] = useState(likesFromLocalStorage);
   const [dislikedArticles, setDislikedArticles] = useState(
     dislikesFromLocalStorage
   );
-  const [isLikeButtonActive, setIsLikeButtonActive] = useState(
-    likedArticles.includes(articleId) ? false : true
-  );
-  const [isDislikeButtonActive, setIsDislikeButtonActive] = useState(
-    dislikedArticles.includes(articleId) ? false : true
-  );
+  const [isLiked, setIsLiked] = useState();
+  const [isDisliked, setIsDisliked] = useState();
+
+  useEffect(() => {
+    setIsLiked(likedArticles.includes(articleId) ? true : false);
+    setIsDisliked(dislikedArticles.includes(articleId) ? true : false);
+  }, []);
 
   // Adding likes to local storage//
+
   useEffect(() => {
     localStorage.setItem("likedArticles", JSON.stringify(likedArticles));
-  }, [isLikeButtonActive]);
+  }, [likedArticles]);
 
   useEffect(() => {
     localStorage.setItem("dislikedArticles", JSON.stringify(dislikedArticles));
-  }, [isDislikeButtonActive]);
+  }, [dislikedArticles]);
 
-  // HandleClick Event //
+  // HandleClick Events //
 
   const handleDislikeClick = (inc_vote) => {
-    if (isDislikeButtonActive && !isLikeButtonActive) {
+    if (!isDisliked && isLiked) {
       inc_vote = -2;
     }
-    setVote(inc_vote);
+    setVoteCounter((currCount) => {
+      return currCount + inc_vote;
+    });
     if (inc_vote < 0 && !dislikedArticles.includes(articleId)) {
       setDislikedArticles((currDislikes) => {
         return [...currDislikes, articleId];
@@ -48,22 +51,25 @@ export default function RatingButtonManager({ articleId, setVote }) {
       setLikedArticles((currLikes) => {
         return currLikes.filter((id) => id !== articleId);
       });
-      setIsDislikeButtonActive(false);
-      setIsLikeButtonActive(true);
+      setIsDisliked(true);
+      setIsLiked(false);
     }
     if (inc_vote > 0) {
       setDislikedArticles((currDislikes) => {
         return currDislikes.filter((id) => id !== articleId);
       });
-      setIsDislikeButtonActive(true);
+      setIsDisliked(false);
     }
   };
 
   const handleLikeClick = (inc_vote) => {
-    if (isLikeButtonActive && !isDislikeButtonActive) {
+    if (!isLiked && isDisliked) {
       inc_vote = 2;
     }
-    setVote(inc_vote);
+    setVoteCounter((currCount) => {
+      return currCount + inc_vote;
+    });
+
     if (inc_vote > 0 && !likedArticles.includes(articleId)) {
       setLikedArticles((currLikes) => {
         return [...currLikes, articleId];
@@ -71,21 +77,21 @@ export default function RatingButtonManager({ articleId, setVote }) {
       setDislikedArticles((currDislikes) => {
         return currDislikes.filter((id) => id !== articleId);
       });
-      setIsLikeButtonActive(false);
-      setIsDislikeButtonActive(true);
+      setIsLiked(true);
+      setIsDisliked(false);
     }
     if (inc_vote < 0) {
       setLikedArticles((currLikes) => {
         return currLikes.filter((id) => id !== articleId);
       });
-      setIsLikeButtonActive(true);
+      setIsLiked(false);
     }
   };
 
   // Thumb Display //
   return (
     <section className="article__buttons">
-      {isLikeButtonActive && (
+      {!isLiked && (
         <FontAwesomeIcon
           className="article__buttons--like"
           onClick={() => handleLikeClick(1)}
@@ -93,7 +99,7 @@ export default function RatingButtonManager({ articleId, setVote }) {
           size="lg"
         />
       )}
-      {!isLikeButtonActive && (
+      {isLiked && (
         <ActiveLikeButton>
           <FontAwesomeIcon
             onClick={() => handleLikeClick(-1)}
@@ -105,7 +111,7 @@ export default function RatingButtonManager({ articleId, setVote }) {
 
       {"   "}
 
-      {isDislikeButtonActive && (
+      {!isDisliked && (
         <FontAwesomeIcon
           className="article__buttons--dislike"
           onClick={() => handleDislikeClick(-1)}
@@ -113,7 +119,7 @@ export default function RatingButtonManager({ articleId, setVote }) {
           size="lg"
         />
       )}
-      {!isDislikeButtonActive && (
+      {isDisliked && (
         <ActiveDislikeButton>
           <FontAwesomeIcon
             onClick={() => handleDislikeClick(1)}

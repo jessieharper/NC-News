@@ -23,7 +23,7 @@
   height: 5em;
   padding: 0 1em;
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .header__title h1 {
@@ -94,17 +94,21 @@
   height: 12em;
 }
 
-.sidebar--inactive {
-  background-color: #ffffff9a;
-  height: 2em;
-  position: relative;
-  z-index: 1;
+.side__bar {
+  background-color: rgba(240, 248, 255, 0.325);
+  backdrop-filter: blur(1em);
+  height: auto;
+  display: block;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+
+  top: 2.5em;
+  z-index: 2;
 }
 
-.sidebar__bar {
-  text-align: center;
-  padding-top: 0.2em;
-  opacity: 60%;
+.side__bar.open {
+  height: 100vh;
 }
 
 .btn {
@@ -146,6 +150,16 @@
   float: right;
   margin-top: -6%;
 }
+
+.comment {
+  border: 1% dotted;
+  background-color: rgba(235, 225, 225, 0.66);
+  border-radius: 1em;
+  border-top-left-radius: 0;
+  margin: 1em auto;
+  padding: 3%;
+}
+
 .comment__form textarea {
   width: 100%;
   height: 10em;
@@ -171,7 +185,7 @@ h1 {
 }
 h2 {
   text-align: center;
-  padding-top: 5%;
+  padding-top: 10%;
   color: rgb(247, 247, 247);
   font-weight: 600;
   margin-bottom: -5%;
@@ -181,13 +195,13 @@ h2 {
 
 h2::before {
   content: "";
-  height: 8px;
-  width: 50%;
+  height: 3px;
+  width: 90%;
   position: absolute;
-  right: 25%;
+  right: 5%;
   background: linear-gradient(to right, #a6bad9, #e30909);
   border-radius: 2px;
-  margin-top: 12%;
+  margin-top: 11%;
 }
 
 html {

@@ -3,20 +3,19 @@ import { useState, useEffect } from "react";
 import { patchArticleVotes } from "../../utils/utils";
 import { RatingButtonManager } from "../index";
 
-export default function ArticleRating({ setVoteCounter }) {
-  const [vote, setVote] = useState(0);
+export default function ArticleRating({ setVoteCounter, voteCounter }) {
   const { articleId } = useParams();
 
   useEffect(() => {
-    setVoteCounter((currCounter) => {
-      return currCounter + vote;
-    });
-    patchArticleVotes(articleId, vote);
-  }, [vote]);
+    patchArticleVotes(articleId, voteCounter);
+  }, [voteCounter]);
 
   return (
     <div className="articles__box-footer--votes">
-      <RatingButtonManager articleId={articleId} setVote={setVote} />
+      <RatingButtonManager
+        articleId={articleId}
+        setVoteCounter={setVoteCounter}
+      />
     </div>
   );
 }
