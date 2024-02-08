@@ -46,6 +46,7 @@ export default function SingleArticle({ user }) {
         <ArticleRating
           currentArticle={currentArticle}
           setVoteCounter={setVoteCounter}
+          voteCounter={voteCounter}
         />
       </Box>
       <Box>

@@ -13,6 +13,8 @@ const Box = styled.article`
   min-height: auto;
   align-self: center;
   justify-content: center;
+  position: relative;
+  z-index: 1;
 `;
 
 const ActiveLikeButton = styled.button`

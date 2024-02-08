@@ -7,11 +7,13 @@ import {
   SingleArticle,
   Comments,
   ArticleRating,
+  Topics,
 } from "./index";
 
 function App() {
-  const [sideBarStatus, setSideBarStatus] = useState("sidebar--inactive");
+  const [sideBarStatus, setSideBarStatus] = useState("side__bar");
   const [user, setUser] = useState("cooljmessy");
+  const [allArticles, setAllArticles] = useState([]);
 
   return (
     <main className="container">
@@ -19,20 +21,39 @@ function App() {
         <NavBar />
       </header>
       <nav className={sideBarStatus}>
-        <SideBar setSideBarStatus={setSideBarStatus} />
+        <SideBar
+          setSideBarStatus={setSideBarStatus}
+          sideBarStatus={sideBarStatus}
+        />
       </nav>
       <Routes>
-        <Route path="/articles" element={<AllArticles />} />
         <Route
-          path="/articles/:articleId"
-          element={<SingleArticle user={user} />}
+          path="/"
+          element={
+            <AllArticles
+              setAllArticles={setAllArticles}
+              allArticles={allArticles}
+            />
+          }
         />
+        <Route path="/:articleId" element={<SingleArticle user={user} />} />
         <Route
-          path="/articles/:articleId/comments"
+          path="/:articleId/comments"
           element={
             <>
               <Comments />
               <ArticleRating />
+            </>
+          }
+        />
+        <Route
+          path="/topics/:topic"
+          element={
+            <>
+              <Topics
+                setAllArticles={setAllArticles}
+                allArticles={allArticles}
+              />
             </>
           }
         />

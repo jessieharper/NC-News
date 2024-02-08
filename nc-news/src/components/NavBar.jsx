@@ -16,7 +16,7 @@ export default function NavBar() {
   return (
     <nav className="navbar">
       <div className="header__title">
-        <Link to="/articles">
+        <Link to="/">
           <h1>NCN</h1>
         </Link>
       </div>
@@ -26,7 +26,7 @@ export default function NavBar() {
             <Link to="#">PROFILE</Link>
           </li>
           <li className="header__navbar--link">
-            <Link to="/articles">ARTICLES</Link>
+            <Link to="/">ARTICLES</Link>
           </li>
           <li className="header__navbar--link">
             <Link to="#">ABOUT</Link>
@@ -40,12 +40,12 @@ export default function NavBar() {
         <FontAwesomeIcon icon={faBars} size="2xl" />
       </button>
 
-      <div className={tripleBarStatus}>
+      <div onClick={handleClick} className={tripleBarStatus}>
         <li className="header__navbar--link">
           <Link to="#">EXAMPLE</Link>
         </li>
         <li className="header__navbar--link">
-          <Link to="/articles">ARTICLES</Link>
+          <Link to="/">ARTICLES</Link>
         </li>
         <li className="header__navbar--link">
           <Link to="#">EXAMPLE</Link>
