@@ -232,6 +232,9 @@
   background-color: #b45266a7;
 }
 
+.error__status {
+  text-align: center;
+}
 h1 {
   font-size: 2rem;
 }

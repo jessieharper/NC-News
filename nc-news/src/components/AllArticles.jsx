@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArticleCard } from "../index";
+import { ArticleCard, Errors } from "../index";
 import { fetchAllArticles } from "../../utils/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -8,16 +8,25 @@ import {
   faArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function AllArticles({ setAllArticles, allArticles }) {
+export default function AllArticles({
+  setAllArticles,
+  allArticles,
+  error,
+  setError,
+}) {
   const [sortMenu, setSortMenu] = useState("dropdown_menu");
   const [searchParam, setSearchParam] = useState("");
   const [order, setOrder] = useState("");
   const [sortByText, setSortByText] = useState("Sort by");
 
   useEffect(() => {
-    fetchAllArticles("sort_by", searchParam, order).then((res) => {
-      setAllArticles(res);
-    });
+    fetchAllArticles("sort_by", searchParam, order)
+      .then((res) => {
+        setAllArticles(res);
+      })
+      .catch((err) => {
+        setError(err);
+      });
   }, [searchParam, order]);
 
   const handleSortClick = (e, param) => {
@@ -26,15 +35,21 @@ export default function AllArticles({ setAllArticles, allArticles }) {
         ? "dropdown_menu sort open"
         : "dropdown_menu";
     });
-    setSearchParam(param);
 
-    if (param)
+    if (param) {
+      setSearchParam(param);
       setSortByText(() => {
         return param === "created_at"
           ? "Date"
           : param.slice(0, 1).toUpperCase() + param.slice(1);
       });
+    }
   };
+
+  if (error) {
+    const message = error.response.data.msg;
+    return <Errors message={message} status={error.response.status} />;
+  }
 
   return (
     <section className="articles">

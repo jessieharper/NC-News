@@ -1,16 +1,30 @@
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { ArticleCard } from "../index";
+import { ArticleCard, Errors } from "../index";
 import { fetchAllArticles } from "../../utils/utils";
 
-export default function Topics({ setAllArticles, allArticles }) {
+export default function Topics({
+  setAllArticles,
+  allArticles,
+  error,
+  setError,
+}) {
   const { topic } = useParams();
 
   useEffect(() => {
-    fetchAllArticles("topic", topic).then((res) => {
-      setAllArticles(res);
-    });
-  }, []);
+    fetchAllArticles("topic", topic)
+      .then((res) => {
+        setAllArticles(res);
+      })
+      .catch((err) => {
+        setError(err);
+      });
+  }, [topic]);
+
+  if (error) {
+    const message = error.response.data.msg;
+    return <Errors message={message} status={error.response.status} />;
+  }
 
   return (
     <section className="articles">
