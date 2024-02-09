@@ -9,6 +9,7 @@
   background: linear-gradient(to left, #a6bad9, #b45266);
   background-repeat: no-repeat;
   background-attachment: fixed;
+  color-scheme: only light;
 }
 
 .container {
