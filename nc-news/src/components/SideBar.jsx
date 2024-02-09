@@ -29,20 +29,20 @@ export default function SideBar({ setSideBarStatus, sideBarStatus }) {
         {sideBarStatus === "side__bar open" && (
           <div className="sidebar__navbar">
             <h3>Topics</h3>
-            <ul className="topics__list">
+            <ul>
               {allTopics.map((topic) => {
                 return (
-                  <li key={topic.slug}>
+                  <li className="btn" key={topic.slug}>
                     <Link to={`/topics/${topic.slug.toLowerCase()}`}>
                       #{topic.slug.toLowerCase()}
                     </Link>
                   </li>
                 );
               })}
-              <li className="sidebar__navbar--link">
+              <li className="sidebar__navbar--link btn">
                 <Link to="">Popular</Link>
               </li>
-              <li className="sidebar__navbar--link">
+              <li className="sidebar__navbar--link btn">
                 <Link to="">Recent</Link>
               </li>
             </ul>

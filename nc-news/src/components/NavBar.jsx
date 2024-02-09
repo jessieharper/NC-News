@@ -7,9 +7,9 @@ export default function NavBar() {
   const [tripleBarStatus, setTripleBarStatus] = useState("dropdown_menu");
   const handleClick = () => {
     setTripleBarStatus((currStatus) => {
-      return currStatus === "dropdown_menu"
-        ? "dropdown_menu open"
-        : "dropdown_menu";
+      return currStatus === "dropdown_menu header"
+        ? "dropdown_menu header open"
+        : "dropdown_menu header";
     });
   };
 
