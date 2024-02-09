@@ -211,14 +211,21 @@
   padding: 1%;
   background-color: rgba(255, 255, 255, 0.411);
   transition: all 0.2s ease-out;
-  margin-top: 10%;
+  margin-top: 5%;
   margin-left: 5%;
   margin-right: 2%;
   width: auto;
 }
 
+.articles__header {
+  margin: 5% auto;
+  width: 100%;
+  justify-content: center;
+  max-width: 500px;
+}
+
 .articles__header--toggle {
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 #sort_btns button {
@@ -240,10 +247,9 @@ h1 {
 }
 h2 {
   text-align: center;
-  padding-top: 10%;
+  margin-top: 10%;
   color: rgb(247, 247, 247);
   font-weight: 600;
-  margin-bottom: -5%;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 2em;
 }
@@ -252,11 +258,12 @@ h2::before {
   content: "";
   height: 3px;
   width: 90%;
+  margin: 12% auto;
+  max-width: 500px;
   position: absolute;
   right: 5%;
   background: linear-gradient(to right, #a6bad9, #e30909);
   border-radius: 2px;
-  margin-top: 13%;
 }
 
 html {
@@ -293,12 +300,12 @@ li {
   .dropdown_menu.open.sort {
     margin-top: 5%;
   }
+}
 
-  /* mid screens */
-  @media (min-width: 425px) {
-    h2::before {
-      display: none;
-    }
+/* mid screens */
+@media (min-width: 425px) {
+  h2::before {
+    display: none;
   }
 }
 
@@ -331,11 +338,5 @@ li {
   .dropdown_menu.open.sort {
     margin-top: 15%;
     width: 20%;
-  }
-  #sort_btns {
-    right: 50%;
-  }
-  .articles__header--btn {
-    margin-left: 30%;
   }
 }

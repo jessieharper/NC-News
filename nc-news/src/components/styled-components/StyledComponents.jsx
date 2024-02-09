@@ -6,8 +6,7 @@ const Box = styled.article`
   border-radius: 20px;
   box-shadow: 10px 15px rgba(33, 32, 32, 0.222);
   padding: 1em;
-  margin: auto;
-  margin-top: 10%;
+  margin: 5% auto;
   width: 90%;
   max-width: 500px;
   min-height: auto;
