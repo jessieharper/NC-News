@@ -34,7 +34,7 @@ export default function SideBar({ setSideBarStatus, sideBarStatus }) {
                 return (
                   <li className="btn" key={topic.slug}>
                     <Link to={`/topics/${topic.slug.toLowerCase()}`}>
-                      #{topic.slug.toLowerCase()}
+                      {topic.slug.toLowerCase()}
                     </Link>
                   </li>
                 );

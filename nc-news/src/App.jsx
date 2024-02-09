@@ -7,7 +7,6 @@ import {
   SingleArticle,
   Comments,
   ArticleRating,
-  Topics,
   Errors,
 } from "./index";
 
@@ -61,7 +60,7 @@ function App() {
           path="/topics/:topic"
           element={
             <>
-              <Topics
+              <AllArticles
                 setAllArticles={setAllArticles}
                 allArticles={allArticles}
                 error={error}
