@@ -6,7 +6,7 @@ const Box = styled.article`
   border-radius: 20px;
   box-shadow: 10px 15px rgba(33, 32, 32, 0.222);
   padding: 1em;
-  margin: 5% auto;
+  margin: 50px auto;
   width: 90%;
   max-width: 500px;
   min-height: auto;
@@ -14,6 +14,10 @@ const Box = styled.article`
   justify-content: center;
   position: relative;
   z-index: 1;
+`;
+
+const CommentBox = styled(Box)`
+  margin: auto;
 `;
 
 const ActiveLikeButton = styled.button`
@@ -40,4 +44,4 @@ const Expandable = ({ children }) => {
   );
 };
 // overflow: hidden;
-export { Box, Expandable, ActiveLikeButton, ActiveDislikeButton };
+export { Box, Expandable, ActiveLikeButton, ActiveDislikeButton, CommentBox };

@@ -16,7 +16,7 @@ export default function NavBar() {
   return (
     <nav className="navbar">
       <div className="header__title">
-        <Link to="/">
+        <Link to="/articles">
           <h1>NCN</h1>
         </Link>
       </div>
@@ -26,7 +26,7 @@ export default function NavBar() {
             <Link to="#">PROFILE</Link>
           </li>
           <li className="header__navbar--link">
-            <Link to="/">ARTICLES</Link>
+            <Link to="/articles">ARTICLES</Link>
           </li>
           <li className="header__navbar--link">
             <Link to="#">ABOUT</Link>
@@ -45,7 +45,7 @@ export default function NavBar() {
           <Link to="#">EXAMPLE</Link>
         </li>
         <li className="header__navbar--link">
-          <Link to="/">ARTICLES</Link>
+          <Link to="/articles">ARTICLES</Link>
         </li>
         <li className="header__navbar--link">
           <Link to="#">EXAMPLE</Link>

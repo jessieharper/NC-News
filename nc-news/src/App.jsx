@@ -27,49 +27,50 @@ function App() {
           sideBarStatus={sideBarStatus}
         />
       </nav>
-      <Routes>
-        <Route path="*" element={<Errors error={error} />} />
-
-        <Route
-          path="/"
-          element={
-            <AllArticles
-              setAllArticles={setAllArticles}
-              allArticles={allArticles}
-              error={error}
-              setError={setError}
-            />
-          }
-        />
-        <Route
-          path="/:articleId"
-          element={
-            <SingleArticle user={user} error={error} setError={setError} />
-          }
-        />
-        <Route
-          path="/:articleId/comments"
-          element={
-            <>
-              <Comments />
-              <ArticleRating />
-            </>
-          }
-        />
-        <Route
-          path="/topics/:topic"
-          element={
-            <>
+      <section className="container__page-contents">
+        <Routes>
+          <Route
+            path="/articles"
+            element={
               <AllArticles
                 setAllArticles={setAllArticles}
                 allArticles={allArticles}
                 error={error}
                 setError={setError}
               />
-            </>
-          }
-        />
-      </Routes>
+            }
+          />
+          <Route
+            path="/articles/:articleId"
+            element={
+              <SingleArticle user={user} error={error} setError={setError} />
+            }
+          />
+          <Route
+            path="/articles/:articleId/comments"
+            element={
+              <>
+                <Comments />
+                <ArticleRating />
+              </>
+            }
+          />
+          <Route
+            path="/articles/topics/:topic"
+            element={
+              <>
+                <AllArticles
+                  setAllArticles={setAllArticles}
+                  allArticles={allArticles}
+                  error={error}
+                  setError={setError}
+                />
+              </>
+            }
+          />
+          <Route path="*" element={<Errors error={error} />} />
+        </Routes>
+      </section>
     </main>
   );
 }

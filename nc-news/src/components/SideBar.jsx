@@ -33,7 +33,7 @@ export default function SideBar({ setSideBarStatus, sideBarStatus }) {
               {allTopics.map((topic) => {
                 return (
                   <li className="btn" key={topic.slug}>
-                    <Link to={`/topics/${topic.slug.toLowerCase()}`}>
+                    <Link to={`/articles/topics/${topic.slug.toLowerCase()}`}>
                       {topic.slug.toLowerCase()}
                     </Link>
                   </li>

@@ -17,7 +17,7 @@ export default function Comments({ user }) {
   }, [articleId]);
 
   return (
-    <section className="comments">
+    <section className="comments__content">
       <header>
         <h4>Comments</h4>
         {!isCommentButtonActive && (

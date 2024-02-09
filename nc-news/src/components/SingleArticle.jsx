@@ -7,7 +7,7 @@ import {
   faHeartCrack,
 } from "@fortawesome/free-solid-svg-icons";
 import moment from "moment";
-import { Box } from "./styled-components/StyledComponents";
+import { Box, CommentBox } from "./styled-components/StyledComponents";
 import { Comments, ArticleRating, Errors } from "../index";
 import { fetchSingleArticle } from "../../utils/utils";
 
@@ -57,9 +57,9 @@ export default function SingleArticle({ user, error, setError }) {
           voteCounter={voteCounter}
         />
       </Box>
-      <Box>
+      <CommentBox>
         <Comments user={user} />
-      </Box>
+      </CommentBox>
     </>
   );
 }
