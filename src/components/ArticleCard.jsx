@@ -6,7 +6,7 @@ import { Box } from "./styled-components/StyledComponents";
 export default function ArticleCard({ article }) {
   return (
     <Box id={article.article_id}>
-      <Link to={`/${article.article_id}`}>
+      <Link to={`/articles/${article.article_id}`}>
         <h3>{article.title}</h3>
       </Link>
       <br />

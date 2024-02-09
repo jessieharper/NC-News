@@ -17,6 +17,7 @@ export default function AllArticles({
   useEffect(() => {
     if (topic)
       setArticleTitle(topic.slice(0, 1).toUpperCase() + topic.slice(1));
+    else setArticleTitle("All Articles");
     fetchAllArticles("sort_by", searchParam, order, topic)
       .then((res) => {
         setAllArticles(res);
