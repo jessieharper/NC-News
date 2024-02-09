@@ -30,6 +30,17 @@ function App() {
       <section className="container__page-contents">
         <Routes>
           <Route
+            path="/"
+            element={
+              <AllArticles
+                setAllArticles={setAllArticles}
+                allArticles={allArticles}
+                error={error}
+                setError={setError}
+              />
+            }
+          />
+          <Route
             path="/articles"
             element={
               <AllArticles
