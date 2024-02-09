@@ -1,12 +1,12 @@
-import { faSearchengin } from "@fortawesome/free-brands-svg-icons";
 import axios from "axios";
 
 const myApi = axios.create({
   baseURL: `https://nc-news-7wgo.onrender.com/api`,
 });
 
-export const fetchAllArticles = (query, searchParam, order) => {
+export const fetchAllArticles = (query, searchParam, order, topic) => {
   const params = new URLSearchParams();
+  if (topic) params.append("topic", topic);
   if (query && searchParam) params.append(query, searchParam);
   if (order) params.append("order", order);
 
