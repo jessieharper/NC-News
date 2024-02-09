@@ -9,7 +9,6 @@
   background: linear-gradient(to left, #a6bad9, #b45266);
   background-repeat: no-repeat;
   background-attachment: fixed;
-  color-scheme: light only;
 }
 
 .container {
@@ -279,6 +278,11 @@ li {
   list-style: none;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    background-color: antiquewhite;
+  }
+}
 /* xs screens */
 @media (min-width: 320px) {
 }
