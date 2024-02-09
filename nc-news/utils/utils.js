@@ -32,8 +32,7 @@ export const patchArticleVotes = (article_id, vote) => {
     .patch(`/articles/${article_id}`, { inc_votes: vote })
     .then((response) => {
       return response.data.comment;
-    })
-    .catch((err) => console.log(err));
+    });
 };
 
 export const postComment = (article_id, username, body) => {
@@ -41,21 +40,15 @@ export const postComment = (article_id, username, body) => {
     .post(`/articles/${article_id}/comments`, { username, body })
     .then((response) => {
       return response.data.comment;
-    })
-    .catch((err) => console.log(err));
+    });
 };
 
 export const deleteComment = (comment_id) => {
-  return myApi
-    .delete(`/comments/${comment_id}`)
-    .catch((err) => console.log(err));
+  return myApi.delete(`/comments/${comment_id}`);
 };
 
 export const fetchAllTopics = () => {
-  return myApi
-    .get(`/topics`)
-    .then((response) => {
-      return response.data.topics;
-    })
-    .catch((err) => console.log(err));
+  return myApi.get(`/topics`).then((response) => {
+    return response.data.topics;
+  });
 };

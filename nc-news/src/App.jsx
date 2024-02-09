@@ -8,12 +8,14 @@ import {
   Comments,
   ArticleRating,
   Topics,
+  Errors,
 } from "./index";
 
 function App() {
   const [sideBarStatus, setSideBarStatus] = useState("side__bar");
   const [user, setUser] = useState("cooljmessy");
   const [allArticles, setAllArticles] = useState([]);
+  const [error, setError] = useState(null);
 
   return (
     <main className="container">
@@ -27,16 +29,25 @@ function App() {
         />
       </nav>
       <Routes>
+        <Route path="*" element={<Errors error={error} />} />
+
         <Route
           path="/"
           element={
             <AllArticles
               setAllArticles={setAllArticles}
               allArticles={allArticles}
+              error={error}
+              setError={setError}
             />
           }
         />
-        <Route path="/:articleId" element={<SingleArticle user={user} />} />
+        <Route
+          path="/:articleId"
+          element={
+            <SingleArticle user={user} error={error} setError={setError} />
+          }
+        />
         <Route
           path="/:articleId/comments"
           element={
@@ -53,6 +64,8 @@ function App() {
               <Topics
                 setAllArticles={setAllArticles}
                 allArticles={allArticles}
+                error={error}
+                setError={setError}
               />
             </>
           }

@@ -10,6 +10,7 @@ import ArticleCard from "./components/ArticleCard";
 import PostComment from "./components/PostComment";
 import DeleteComments from "./components/DeleteComments";
 import Topics from "./components/Topics";
+import Errors from "./components/Errors";
 
 export {
   NavBar,
@@ -24,4 +25,5 @@ export {
   PostComment,
   DeleteComments,
   Topics,
+  Errors,
 };

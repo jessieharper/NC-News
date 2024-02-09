@@ -8,20 +8,28 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import moment from "moment";
 import { Box } from "./styled-components/StyledComponents";
-import { Comments, ArticleRating } from "../index";
+import { Comments, ArticleRating, Errors } from "../index";
 import { fetchSingleArticle } from "../../utils/utils";
 
-export default function SingleArticle({ user }) {
+export default function SingleArticle({ user, error, setError }) {
   const [voteCounter, setVoteCounter] = useState(0);
   const [currentArticle, setCurrentArticle] = useState([]);
   const { articleId } = useParams();
 
   useEffect(() => {
-    fetchSingleArticle(articleId).then((res) => {
-      setCurrentArticle(res[0]);
-    });
+    fetchSingleArticle(articleId)
+      .then((res) => {
+        setCurrentArticle(res[0]);
+      })
+      .catch((err) => {
+        setError(err);
+      });
   }, [articleId]);
 
+  if (error) {
+    const message = error.response.data.msg;
+    return <Errors message={message} status={error.response.status} />;
+  }
   return (
     <>
       <Box>
