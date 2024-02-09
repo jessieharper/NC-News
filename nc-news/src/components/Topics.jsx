@@ -7,7 +7,7 @@ export default function Topics({ setAllArticles, allArticles }) {
   const { topic } = useParams();
 
   useEffect(() => {
-    fetchAllArticles().then((res) => {
+    fetchAllArticles("topic", topic).then((res) => {
       setAllArticles(res);
     });
   }, []);
@@ -16,9 +16,7 @@ export default function Topics({ setAllArticles, allArticles }) {
     <section className="articles">
       <h2>#{topic}</h2>
       {allArticles.map((article) => {
-        if (article.topic === topic) {
-          return <ArticleCard key={article.article_id} article={article} />;
-        }
+        return <ArticleCard key={article.article_id} article={article} />;
       })}
     </section>
   );

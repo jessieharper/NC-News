@@ -92,23 +92,47 @@
 
 .dropdown_menu.open {
   height: 12em;
+  z-index: 3;
+  border-top-right-radius: 0;
+  border: 1px solid;
+}
+
+.dropdown_menu.open.sort {
+  height: auto;
+  width: 40%;
+  right: 55%;
+  top: 13em;
+  padding: 2%;
+  border-top-right-radius: 1em;
+  border-top-left-radius: 0;
 }
 
 .side__bar {
-  background-color: rgba(240, 248, 255, 0.325);
-  backdrop-filter: blur(1em);
-  height: auto;
+  background-color: rgba(240, 248, 255, 0.838);
   display: block;
   width: 100%;
   position: absolute;
   text-align: center;
-
   top: 2.5em;
   z-index: 2;
+  padding: 1% 0;
 }
 
 .side__bar.open {
-  height: 100vh;
+  height: auto;
+}
+
+.sidebar__navbar {
+  padding: 1em;
+}
+
+.sidebar__navbar h3 {
+  font-size: 1.5em;
+}
+
+.sidebar__navbar a {
+  color: aliceblue;
+  font-size: 1em;
 }
 
 .btn {
@@ -180,6 +204,34 @@
   float: right;
 }
 
+.articles__header--btn {
+  float: left;
+  border: 1px solid;
+  border-radius: 0.2em;
+  padding: 1%;
+  background-color: rgba(255, 255, 255, 0.411);
+  transition: all 0.2s ease-out;
+  margin-top: 10%;
+  margin-left: 5%;
+  margin-right: 2%;
+  width: auto;
+}
+
+.articles__header--toggle {
+  margin-top: 10%;
+}
+
+#sort_btns button {
+  border: 1px transparent;
+  border-radius: 1em;
+  display: block;
+  width: 100%;
+}
+
+#sort_btns button:hover {
+  background-color: #b45266a7;
+}
+
 h1 {
   font-size: 2rem;
 }
@@ -201,7 +253,7 @@ h2::before {
   right: 5%;
   background: linear-gradient(to right, #a6bad9, #e30909);
   border-radius: 2px;
-  margin-top: 11%;
+  margin-top: 13%;
 }
 
 html {
@@ -216,6 +268,13 @@ img {
 
 a {
   text-decoration: none;
+  color: black;
+  transition: transform 0.3s ease-in-out;
+}
+
+.header a:hover {
+  color: #b45266;
+  transform: translateY(-3px);
 }
 
 li {
@@ -228,12 +287,15 @@ li {
 
 /* sm screens */
 @media (min-width: 375px) {
-}
+  .dropdown_menu.open.sort {
+    margin-top: 5%;
+  }
 
-/* mid screens */
-@media (min-width: 425px) {
-  h2::before {
-    display: none;
+  /* mid screens */
+  @media (min-width: 425px) {
+    h2::before {
+      display: none;
+    }
   }
 }
 
@@ -249,8 +311,11 @@ li {
   .header__navbar--button {
     display: none;
   }
-  .dropdown_menu {
+  .dropdown_menu.header {
     display: none;
+  }
+  .dropdown_menu.open.sort {
+    margin-top: 10%;
   }
 }
 
@@ -260,4 +325,14 @@ li {
 
 /* laptop L */
 @media (min-width: 1440px) {
+  .dropdown_menu.open.sort {
+    margin-top: 15%;
+    width: 20%;
+  }
+  #sort_btns {
+    right: 50%;
+  }
+  .articles__header--btn {
+    margin-left: 30%;
+  }
 }
