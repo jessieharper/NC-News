@@ -1,8 +1,13 @@
-# React + Vite
+# 🗞️ Northcoders News App 📰
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to my Northcoders News app project! The aim of this project was to build a news app using my [NC News Api](https://github.com/jessieharper/northcoders-news-api) backend project. You can access the deployed app [here](https://nc-news-hessie.netlify.app/). You can use this app to:
 
-Currently, two official plugins are available:
+- View and like/dislike articles
+- View, post, and delete comments on articles
+- Filter articles by topic
+- Sort articles by title, author, and date created, in descending or ascending order (sorts by DESC by default)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+In order to run this project locally, you will need to:
+
+- Have a minimum version of v20.6.1 or higher of [Node.js](https://nodejs.org/en/download/current) installed
+- Run npm install to install required dependencies.
