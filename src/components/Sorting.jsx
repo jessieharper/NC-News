@@ -28,7 +28,7 @@ export default function Sorting({ order, setOrder, setSearchParam }) {
   };
 
   return (
-    <>
+    <section className="articles__header--sort">
       <button onClick={handleSortClick} className="articles__header--btn">
         {sortByText} <FontAwesomeIcon icon={faSort} size="lg" />
       </button>
@@ -65,6 +65,6 @@ export default function Sorting({ order, setOrder, setSearchParam }) {
         />{" "}
         Desc (Z-A) <FontAwesomeIcon icon={faArrowDown} />
       </form>
-    </>
+    </section>
   );
 }

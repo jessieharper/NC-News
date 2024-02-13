@@ -101,12 +101,13 @@
 
 .dropdown_menu.open.sort {
   height: auto;
-  width: 40%;
-  right: 55%;
-  top: 13em;
-  padding: 2%;
+  width: auto;
+  right: auto;
+  top: 15em;
+  padding: 5px;
   border-top-right-radius: 1em;
   border-top-left-radius: 0;
+  margin-left: 15px;
 }
 
 .side__bar {
@@ -199,8 +200,7 @@
   padding: 1%;
   background-color: rgba(255, 255, 255, 0.411);
   transition: all 0.2s ease-out;
-  margin-top: 4%;
-  margin-left: 5%;
+  margin-left: 15px;
   margin-right: 2%;
   width: auto;
 }
@@ -316,9 +316,6 @@ li {
   .dropdown_menu.header {
     display: none;
   }
-  .dropdown_menu.open.sort {
-    margin-top: 10%;
-  }
 }
 
 /* laptop */
@@ -327,8 +324,4 @@ li {
 
 /* laptop L */
 @media (min-width: 1440px) {
-  .dropdown_menu.open.sort {
-    margin-top: 15%;
-    width: 20%;
-  }
 }
