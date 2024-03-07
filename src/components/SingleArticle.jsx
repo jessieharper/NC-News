@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCommentAlt,
@@ -9,6 +9,7 @@ import {
 import moment from "moment";
 import { Box, CommentBox } from "./styled-components/StyledComponents";
 import { Comments, ArticleRating, Errors } from "../index";
+import "./ArticleCard.css";
 import { fetchSingleArticle } from "../../utils/utils";
 
 export default function SingleArticle({ user, error, setError }) {
@@ -35,27 +36,39 @@ export default function SingleArticle({ user, error, setError }) {
       <Box>
         <div className="article__header">
           <h3>{currentArticle.title}</h3>
-          <p>{currentArticle.topic}</p>
-          <p>{currentArticle.author}</p>
-          <p>{moment(currentArticle.created_at).format("MMMM Do YYYY")}</p>
+          <div className="articles__box--metadata">
+            <div className="articles__box--author">
+              <p>Posted by {currentArticle.author}</p>
+              <p>{moment(currentArticle.created_at).format("MMMM Do YYYY")}</p>
+            </div>
+            <div className="articles__box--topic">
+              <Link to={`/articles/topics/${currentArticle.topic}`}>
+                #{currentArticle.topic}
+              </Link>
+            </div>
+          </div>
           <img src={currentArticle.article_img_url} />
         </div>
-        <div className="body">
+        <div className="article__body">
           <p>{currentArticle.body}</p>
         </div>
-        <div className="articles__box-footer">
-          <FontAwesomeIcon icon={faCommentAlt} size="lg" />{" "}
-          {currentArticle.comment_count}{" "}
-          <FontAwesomeIcon
-            icon={+currentArticle.votes < 0 ? faHeartCrack : faHeart}
-          />{" "}
-          {voteCounter + currentArticle.votes}
+        <div className="single-article--footer">
+          <div className="single-article--footer--comments">
+            <FontAwesomeIcon icon={faCommentAlt} size="lg" />{" "}
+            {currentArticle.comment_count}{" "}
+            <FontAwesomeIcon
+              icon={+currentArticle.votes < 0 ? faHeartCrack : faHeart}
+              size="lg"
+            />{" "}
+            {voteCounter + currentArticle.votes}
+          </div>
+
+          <ArticleRating
+            currentArticle={currentArticle}
+            setVoteCounter={setVoteCounter}
+            voteCounter={voteCounter}
+          />
         </div>
-        <ArticleRating
-          currentArticle={currentArticle}
-          setVoteCounter={setVoteCounter}
-          voteCounter={voteCounter}
-        />
       </Box>
       <CommentBox>
         <Comments user={user} />
