@@ -1,0 +1,30 @@
+.articles__box--metadata {
+  padding: 1em 0.2em;
+  font-weight: 500;
+}
+
+.articles__box--footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.2em 0;
+}
+
+.single-article--footer {
+  padding-top: 1.5em;
+  padding-bottom: 0.5em;
+}
+
+.article__body {
+  margin: 1em 0.5em;
+}
+
+.articles__box--topic {
+  margin-top: 0.5em;
+  font-weight: 600;
+  transition: all ease-in-out 3s;
+}
+
+.articles__box--topic a:hover {
+  color: brown;
+}
