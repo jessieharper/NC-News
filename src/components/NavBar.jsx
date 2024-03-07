@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
 export default function NavBar() {
   const [tripleBarStatus, setTripleBarStatus] = useState("dropdown_menu");
@@ -23,16 +23,13 @@ export default function NavBar() {
       <div className="header__links">
         <ul>
           <li className="header__navbar--link">
-            <Link to="#">PROFILE</Link>
+            <Link to="/">HOME</Link>
           </li>
           <li className="header__navbar--link">
             <Link to="/articles">ARTICLES</Link>
           </li>
-          <li className="header__navbar--link">
-            <Link to="#">ABOUT</Link>
-          </li>
-          <li className="header__navbar--link">
-            <Link to="#">SIGN OUT</Link>
+          <li className="header__navbar--icon">
+            <FontAwesomeIcon icon={faCircleUser} size="2xl" />
           </li>
         </ul>
       </div>
@@ -42,16 +39,16 @@ export default function NavBar() {
 
       <div onClick={handleClick} className={tripleBarStatus}>
         <li className="header__navbar--link">
-          <Link to="#">EXAMPLE</Link>
+          <Link to="/">HOME</Link>
         </li>
         <li className="header__navbar--link">
           <Link to="/articles">ARTICLES</Link>
         </li>
         <li className="header__navbar--link">
-          <Link to="#">EXAMPLE</Link>
+          <Link to="#">PLACEHOLDER</Link>
         </li>
         <li className="header__navbar--link">
-          <Link to="#">EXAMPLE</Link>
+          <Link to="#">PLACEHOLDER</Link>
         </li>
       </div>
     </nav>

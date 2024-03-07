@@ -8,18 +8,21 @@ export default function ArticleCard({ article }) {
     <Box id={article.article_id}>
       <Link to={`/articles/${article.article_id}`}>
         <h3>{article.title}</h3>
+
+        <br />
+        <p>Posted by {article.author}</p>
+        <img src={article.article_img_url} />
+
+        <div className="articles__box-footer">
+          <div className="articles__box-footer--comments">
+            <FontAwesomeIcon icon={faComment} size="lg" />{" "}
+            {article.comment_count}
+          </div>
+          <div className="articles__box-footer--votes">
+            <FontAwesomeIcon icon={faThumbsUp} /> {article.votes}
+          </div>
+        </div>
       </Link>
-      <br />
-      <p>Posted by {article.author}</p>
-      <img src={article.article_img_url} />
-      <div className="articles__box-footer">
-        <div className="articles__box-footer--comments">
-          <FontAwesomeIcon icon={faComment} size="lg" /> {article.comment_count}
-        </div>
-        <div className="articles__box-footer--votes">
-          <FontAwesomeIcon icon={faThumbsUp} /> {article.votes}
-        </div>
-      </div>
     </Box>
   );
 }
