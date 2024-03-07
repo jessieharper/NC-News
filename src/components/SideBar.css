@@ -1,0 +1,80 @@
+.sidebar--top {
+  background-color: rgba(240, 248, 255, 0.838);
+  display: block;
+  width: 100%;
+  position: fixed;
+  text-align: center;
+  margin-top: 2.1em;
+  z-index: 2;
+  padding: 10px 0;
+}
+
+.sidebar--top.open {
+  height: auto;
+}
+
+.sidebar--side {
+  display: none;
+  float: left;
+  position: fixed;
+  margin-top: 2.5em;
+  height: 100vh;
+  width: 150px;
+  background-color: rgba(240, 248, 255, 0.325);
+  backdrop-filter: blur(1em);
+  border-right: 1px solid white;
+}
+
+.sidebar--side h3 li {
+  text-align: right;
+}
+
+.sidebar--topics {
+  padding: 1.2em;
+}
+
+.sidebar--topics h3 {
+  font-size: 1.5em;
+  padding-bottom: 20px;
+  text-decoration: underline;
+}
+
+.sidebar--topics li {
+  padding-bottom: 20px;
+  margin-left: 15px;
+}
+
+.sidebar--topics a {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  font-size: 1.2em;
+}
+
+.sidebar--topics a:hover {
+  color: #b45266;
+}
+
+.topics {
+  padding: 1em;
+  text-align: center;
+}
+
+.topics h3 {
+  font-size: 1.5em;
+}
+
+.topics a {
+  color: aliceblue;
+  font-size: 1em;
+}
+
+@media (min-width: 768px) {
+  .sidebar--top {
+    display: none;
+  }
+
+  .sidebar--side {
+    display: block;
+  }
+}

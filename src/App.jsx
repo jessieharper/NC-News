@@ -11,7 +11,6 @@ import {
 } from "./index";
 
 function App() {
-  const [sideBarStatus, setSideBarStatus] = useState("side__bar");
   const [user, setUser] = useState("cooljmessy");
   const [allArticles, setAllArticles] = useState([]);
   const [error, setError] = useState(null);
@@ -21,12 +20,7 @@ function App() {
       <header className="header">
         <NavBar />
       </header>
-      <nav className={sideBarStatus}>
-        <SideBar
-          setSideBarStatus={setSideBarStatus}
-          sideBarStatus={sideBarStatus}
-        />
-      </nav>
+      <SideBar />
       <section className="container__page-contents">
         <Routes>
           <Route

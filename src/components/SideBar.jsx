@@ -1,16 +1,29 @@
 import { useState, useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 import { fetchAllTopics } from "../../utils/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAnglesDown, faAnglesUp } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAnglesDown,
+  faAnglesUp,
+  faHashtag,
+  faNewspaper,
+} from "@fortawesome/free-solid-svg-icons";
+import "./SideBar.css";
 
-export default function SideBar({ setSideBarStatus, sideBarStatus }) {
+export default function SideBar() {
   const [arrowDirection, setArrowDirection] = useState(faAnglesDown);
+  const isLargeScreen = useMediaQuery({ minWidth: 768 });
+  const [sideBarStatus, setSideBarStatus] = useState(
+    isLargeScreen ? "sidebar--side" : "sidebar--top"
+  );
   const [allTopics, setAllTopics] = useState([]);
 
   const handleClick = () => {
     setSideBarStatus((currStatus) => {
-      return currStatus === "side__bar" ? "side__bar open" : "side__bar";
+      return currStatus === "sidebar--top"
+        ? "sidebar--top open"
+        : "sidebar--top";
     });
     setArrowDirection((currAngle) => {
       return currAngle === faAnglesDown ? faAnglesUp : faAnglesDown;
@@ -23,32 +36,42 @@ export default function SideBar({ setSideBarStatus, sideBarStatus }) {
     });
   }, []);
 
+  useEffect(() => {
+    setSideBarStatus(isLargeScreen ? "sidebar--side" : "sidebar--top");
+  }, [isLargeScreen]);
+
   return (
-    <nav>
-      <div onClick={handleClick} className={sideBarStatus}>
-        {sideBarStatus === "side__bar open" && (
-          <div className="sidebar__navbar">
-            <h3>Topics</h3>
+    <nav className={sideBarStatus}>
+      <div className={sideBarStatus}>
+        {(sideBarStatus === "sidebar--top open" || isLargeScreen) && (
+          <div className={!isLargeScreen ? "topics" : "sidebar--topics"}>
+            <h3>
+              Topics <FontAwesomeIcon icon={faNewspaper} />
+            </h3>
             <ul>
               {allTopics.map((topic) => {
                 return (
-                  <li className="btn" key={topic.slug}>
+                  <li
+                    className={!isLargeScreen ? "btn" : "button"}
+                    key={topic.slug}
+                  >
+                    <FontAwesomeIcon icon={faHashtag} />
                     <Link to={`/articles/topics/${topic.slug.toLowerCase()}`}>
                       {topic.slug.toLowerCase()}
                     </Link>
                   </li>
                 );
               })}
-              <li className="sidebar__navbar--link btn">
-                <Link to="">Popular</Link>
-              </li>
-              <li className="sidebar__navbar--link btn">
-                <Link to="">Recent</Link>
-              </li>
             </ul>
           </div>
         )}
-        <FontAwesomeIcon icon={arrowDirection} size="lg" />
+        {!isLargeScreen && (
+          <FontAwesomeIcon
+            onClick={handleClick}
+            icon={arrowDirection}
+            size="lg"
+          />
+        )}
       </div>
     </nav>
   );

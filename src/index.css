@@ -18,13 +18,15 @@
 
 .container__page-contents {
   padding-block: 50px;
+  margin-top: 5em;
 }
 
 .header {
   background-color: rgb(255, 253, 253);
   height: 5em;
   padding: 0 1em;
-  position: relative;
+  width: 100vw;
+  position: fixed;
   z-index: 3;
 }
 
@@ -42,20 +44,30 @@
   height: 5em;
   margin: 0 auto;
   display: flex;
+  position: fixed;
   align-items: center;
   justify-content: space-between;
 }
 
 .header__links {
+  height: 4.5em;
   display: none;
   padding: 1em;
   text-align: right;
+  align-content: center;
   font-size: 1em;
   list-style: none;
 }
 
 .header__navbar--link {
   padding: 0.5em;
+}
+
+.header__navbar--icon {
+  float: right;
+  padding: 0.5em;
+  margin-right: 10px;
+  margin-top: -5px;
 }
 
 .header__navbar--link a {
@@ -71,6 +83,7 @@
   border: transparent;
   cursor: pointer;
   display: block;
+  margin-right: 40px;
 }
 
 .dropdown_menu {
@@ -108,34 +121,6 @@
   border-top-right-radius: 1em;
   border-top-left-radius: 0;
   margin-left: 15px;
-}
-
-.side__bar {
-  background-color: rgba(240, 248, 255, 0.838);
-  display: block;
-  width: 100%;
-  position: absolute;
-  text-align: center;
-  top: 2.5em;
-  z-index: 2;
-  padding: 1% 0;
-}
-
-.side__bar.open {
-  height: auto;
-}
-
-.sidebar__navbar {
-  padding: 1em;
-}
-
-.sidebar__navbar h3 {
-  font-size: 1.5em;
-}
-
-.sidebar__navbar a {
-  color: aliceblue;
-  font-size: 1em;
 }
 
 .btn {
@@ -206,7 +191,7 @@
 }
 
 .articles__header {
-  margin: 5% auto;
+  margin: auto;
   width: 100%;
   justify-content: center;
   max-width: 500px;
@@ -315,6 +300,10 @@ li {
   }
   .dropdown_menu.header {
     display: none;
+  }
+
+  .container__page-contents {
+    margin-left: 150px;
   }
 }
 
