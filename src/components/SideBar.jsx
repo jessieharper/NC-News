@@ -9,10 +9,13 @@ import {
   faHashtag,
   faNewspaper,
 } from "@fortawesome/free-solid-svg-icons";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import "./SideBar.css";
 
 export default function SideBar() {
   const [arrowDirection, setArrowDirection] = useState(faAnglesDown);
+  const [isLoading, setIsLoading] = useState(true);
   const isLargeScreen = useMediaQuery({ minWidth: 768 });
   const [sideBarStatus, setSideBarStatus] = useState(
     isLargeScreen ? "sidebar--side" : "sidebar--top"
@@ -31,8 +34,10 @@ export default function SideBar() {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     fetchAllTopics().then((res) => {
       setAllTopics(res);
+      setIsLoading(false);
     });
   }, []);
 
@@ -55,10 +60,18 @@ export default function SideBar() {
                     className={!isLargeScreen ? "btn" : "button"}
                     key={topic.slug}
                   >
-                    <FontAwesomeIcon icon={faHashtag} />
-                    <Link to={`/articles/topics/${topic.slug.toLowerCase()}`}>
-                      {topic.slug.toLowerCase()}
-                    </Link>
+                    {!isLoading ? (
+                      <>
+                        <FontAwesomeIcon icon={faHashtag} />
+                        <Link
+                          to={`/articles/topics/${topic.slug.toLowerCase()}`}
+                        >
+                          {topic.slug.toLowerCase()}
+                        </Link>
+                      </>
+                    ) : (
+                      <p>Loading...</p>
+                    )}
                   </li>
                 );
               })}

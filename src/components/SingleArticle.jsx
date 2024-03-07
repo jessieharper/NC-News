@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCommentAlt,
@@ -15,17 +17,23 @@ import { fetchSingleArticle } from "../../utils/utils";
 export default function SingleArticle({ user, error, setError }) {
   const [voteCounter, setVoteCounter] = useState(0);
   const [currentArticle, setCurrentArticle] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { articleId } = useParams();
 
   useEffect(() => {
+    setIsLoading(true);
     fetchSingleArticle(articleId)
       .then((res) => {
         setCurrentArticle(res[0]);
+        setIsLoading(false);
       })
       .catch((err) => {
+        setIsLoading(false);
         setError(err);
       });
   }, [articleId]);
+
+  console.log(isLoading);
 
   if (error) {
     const message = error.response.data.msg;
@@ -35,39 +43,72 @@ export default function SingleArticle({ user, error, setError }) {
     <>
       <Box>
         <div className="article__header">
-          <h3>{currentArticle.title}</h3>
+          <h3>{currentArticle.title || <Skeleton />}</h3>
           <div className="articles__box--metadata">
             <div className="articles__box--author">
-              <p>Posted by {currentArticle.author}</p>
-              <p>{moment(currentArticle.created_at).format("MMMM Do YYYY")}</p>
+              {!isLoading ? (
+                <>
+                  <p>Posted by {currentArticle.author}</p>
+                  <p>
+                    {moment(currentArticle.created_at).format("MMMM Do YYYY")}
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p>
+                    <Skeleton />
+                  </p>
+                  <p>
+                    <Skeleton />
+                  </p>
+                </>
+              )}
             </div>
             <div className="articles__box--topic">
-              <Link to={`/articles/topics/${currentArticle.topic}`}>
-                #{currentArticle.topic}
-              </Link>
+              {!isLoading ? (
+                <Link
+                  to={`/articles/topics/${
+                    currentArticle.topic || <Skeleton />
+                  }`}
+                >
+                  Topic: {currentArticle.topic}
+                </Link>
+              ) : (
+                <Skeleton />
+              )}
             </div>
           </div>
-          <img src={currentArticle.article_img_url} />
         </div>
         <div className="article__body">
-          <p>{currentArticle.body}</p>
+          <img src={currentArticle.article_img_url} />
+          <p>{currentArticle.body || <Skeleton count={10} />}</p>
         </div>
         <div className="single-article--footer">
           <div className="single-article--footer--comments">
-            <FontAwesomeIcon icon={faCommentAlt} size="lg" />{" "}
-            {currentArticle.comment_count}{" "}
-            <FontAwesomeIcon
-              icon={+currentArticle.votes < 0 ? faHeartCrack : faHeart}
-              size="lg"
-            />{" "}
-            {voteCounter + currentArticle.votes}
+            {!isLoading ? (
+              <>
+                <FontAwesomeIcon icon={faCommentAlt} size="lg" />{" "}
+                {currentArticle.comment_count}{" "}
+                <FontAwesomeIcon
+                  icon={+currentArticle.votes < 0 ? faHeartCrack : faHeart}
+                  size="lg"
+                />{" "}
+                {voteCounter + currentArticle.votes}
+              </>
+            ) : (
+              <Skeleton />
+            )}
           </div>
 
-          <ArticleRating
-            currentArticle={currentArticle}
-            setVoteCounter={setVoteCounter}
-            voteCounter={voteCounter}
-          />
+          {!isLoading ? (
+            <ArticleRating
+              currentArticle={currentArticle}
+              setVoteCounter={setVoteCounter}
+              voteCounter={voteCounter}
+            />
+          ) : (
+            <Skeleton />
+          )}
         </div>
       </Box>
       <CommentBox>
