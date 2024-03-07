@@ -4,29 +4,44 @@ import { faComment, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { Box } from "./styled-components/StyledComponents";
 import "./ArticleCard.css";
 import moment from "moment";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
-export default function ArticleCard({ article }) {
+export default function ArticleCard({ article, isLoading }) {
   return (
     <Box id={article.article_id}>
       <Link to={`/articles/${article.article_id}`}>
-        <h3>{article.title}</h3>
+        <h3>{article.title || <Skeleton />}</h3>
         <section className="articles__box--metadata">
-          <p>Posted by {article.author}</p>
-          <p className="articles__box--date">
-            {moment(article.created_at).format("MMM Do YYYY, h:mm a")}
-          </p>
+          {!isLoading ? (
+            <>
+              <p>Posted by {article.autho}</p>
+              <p className="articles__box--date">
+                {moment(article.created_at).format("MMM Do YYYY, h:mm a")}
+              </p>
+            </>
+          ) : (
+            <Skeleton />
+          )}
         </section>
         <img src={article.article_img_url} />
 
         <div className="articles__box--footer container">
           <div className="articles__box--footer">
-            <div className="comment-count">
-              <FontAwesomeIcon icon={faComment} size="xl" />{" "}
-              {article.comment_count}
-            </div>
-            <div className="vote-count">
-              <FontAwesomeIcon icon={faThumbsUp} size="xl" /> {article.votes}
-            </div>
+            {!isLoading ? (
+              <>
+                <div className="comment-count">
+                  <FontAwesomeIcon icon={faComment} size="xl" />{" "}
+                  {article.comment_count || <Skeleton />}
+                </div>
+                <div className="vote-count">
+                  <FontAwesomeIcon icon={faThumbsUp} size="xl" />{" "}
+                  {article.votes || <Skeleton />}
+                </div>
+              </>
+            ) : (
+              <Skeleton />
+            )}
           </div>
         </div>
       </Link>
