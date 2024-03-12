@@ -190,11 +190,11 @@
   width: auto;
 }
 
-.articles__header {
+.articles__header--sort {
   margin: auto;
   width: 100%;
   justify-content: center;
-  max-width: 500px;
+  max-width: 350px;
 }
 
 .articles__header--toggle {
@@ -206,11 +206,18 @@
   justify-self: center;
 }
 
+#sort_btns {
+  width: 20%;
+  margin-top: auto;
+}
+
 #sort_btns button {
   border: 1px transparent;
   border-radius: 1em;
   display: block;
   width: 100%;
+  font-weight: 600;
+  font-size: 1em;
 }
 
 #sort_btns button:hover {
