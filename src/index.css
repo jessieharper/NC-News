@@ -201,6 +201,11 @@
   margin-top: 5%;
 }
 
+.loading {
+  align-self: center;
+  justify-self: center;
+}
+
 #sort_btns button {
   border: 1px transparent;
   border-radius: 1em;

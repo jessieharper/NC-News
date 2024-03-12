@@ -1,0 +1,17 @@
+.spinner__container--articles {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner__circle--articles {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  background: linear-gradient(to right, #a6bad9, #b45266);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 10px;
+}

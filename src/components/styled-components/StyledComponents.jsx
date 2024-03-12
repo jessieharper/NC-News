@@ -27,6 +27,34 @@ const ActiveDislikeButton = styled.button`
   color: rgb(227, 9, 9);
 `;
 
+const spinnerContainerVariants = {
+  start: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+  end: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const spinnerCircleVariants = {
+  start: {
+    y: "0%",
+  },
+  end: {
+    y: "100%",
+  },
+};
+
+const spinnerCircleTransition = {
+  duration: 0.4,
+  yoyo: Infinity,
+  ease: "easeInOut",
+};
+
 const Expandable = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -44,4 +72,13 @@ const Expandable = ({ children }) => {
   );
 };
 // overflow: hidden;
-export { Box, Expandable, ActiveLikeButton, ActiveDislikeButton, CommentBox };
+export {
+  Box,
+  Expandable,
+  ActiveLikeButton,
+  ActiveDislikeButton,
+  CommentBox,
+  spinnerContainerVariants,
+  spinnerCircleVariants,
+  spinnerCircleTransition,
+};

@@ -2,8 +2,13 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ArticleCard, Errors, Sorting } from "../index";
 import { fetchAllArticles } from "../../utils/utils";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import { motion } from "framer-motion";
+import {
+  spinnerCircleVariants,
+  spinnerContainerVariants,
+  spinnerCircleTransition,
+} from "./styled-components/StyledComponents";
+import "./AllArticles.css";
 
 export default function AllArticles({
   setAllArticles,
@@ -41,23 +46,49 @@ export default function AllArticles({
   return (
     <section className="articles">
       <header className="articles__header">
-        <h2>{articleTitle || <Skeleton />}</h2>
+        <h2>{articleTitle}</h2>
         <Sorting
           order={order}
           setOrder={setOrder}
           setSearchParam={setSearchParam}
         />
       </header>
-
-      {allArticles.map((article) => {
-        return (
-          <ArticleCard
-            key={article.article_id}
-            article={article}
-            isLoading={isLoading}
+      {isLoading ? (
+        <motion.div
+          className="spinner__container--articles"
+          variants={spinnerContainerVariants}
+          initial="start"
+          animate="end"
+        >
+          <motion.span
+            className="spinner__circle--articles"
+            variants={spinnerCircleVariants}
+            transition={spinnerCircleTransition}
           />
-        );
-      })}
+          <motion.span
+            className="spinner__circle--articles"
+            variants={spinnerCircleVariants}
+            transition={spinnerCircleTransition}
+          />
+          <motion.span
+            className="spinner__circle--articles"
+            variants={spinnerCircleVariants}
+            transition={spinnerCircleTransition}
+          />
+        </motion.div>
+      ) : (
+        <>
+          {allArticles.map((article) => {
+            return (
+              <ArticleCard
+                key={article.article_id}
+                article={article}
+                isLoading={isLoading}
+              />
+            );
+          })}
+        </>
+      )}
     </section>
   );
 }
