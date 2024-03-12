@@ -9,8 +9,12 @@ import {
   faHashtag,
   faNewspaper,
 } from "@fortawesome/free-solid-svg-icons";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import { motion } from "framer-motion";
+import {
+  spinnerCircleVariants,
+  spinnerContainerVariants,
+  spinnerCircleTransition,
+} from "./styled-components/StyledComponents";
 import "./SideBar.css";
 
 export default function SideBar() {
@@ -53,29 +57,46 @@ export default function SideBar() {
             <h3>
               Topics <FontAwesomeIcon icon={faNewspaper} />
             </h3>
-            <ul>
-              {allTopics.map((topic) => {
-                return (
-                  <li
-                    className={!isLargeScreen ? "btn" : "button"}
-                    key={topic.slug}
-                  >
-                    {!isLoading ? (
-                      <>
-                        <FontAwesomeIcon icon={faHashtag} />
-                        <Link
-                          to={`/articles/topics/${topic.slug.toLowerCase()}`}
-                        >
-                          {topic.slug.toLowerCase()}
-                        </Link>
-                      </>
-                    ) : (
-                      <p>Loading...</p>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
+            {isLoading ? (
+              <motion.div
+                className="spinner__container"
+                variants={spinnerContainerVariants}
+                initial="start"
+                animate="end"
+              >
+                <motion.span
+                  className="spinner__circle"
+                  variants={spinnerCircleVariants}
+                  transition={spinnerCircleTransition}
+                />
+                <motion.span
+                  className="spinner__circle"
+                  variants={spinnerCircleVariants}
+                  transition={spinnerCircleTransition}
+                />
+                <motion.span
+                  className="spinner__circle"
+                  variants={spinnerCircleVariants}
+                  transition={spinnerCircleTransition}
+                />
+              </motion.div>
+            ) : (
+              <ul>
+                {allTopics.map((topic) => {
+                  return (
+                    <li
+                      className={!isLargeScreen ? "btn" : "button"}
+                      key={topic.slug}
+                    >
+                      <FontAwesomeIcon icon={faHashtag} />
+                      <Link to={`/articles/topics/${topic.slug.toLowerCase()}`}>
+                        {topic.slug.toLowerCase()}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
           </div>
         )}
         {!isLargeScreen && (

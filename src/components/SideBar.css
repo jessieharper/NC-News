@@ -69,6 +69,25 @@
   font-size: 1em;
 }
 
+.spinner__container {
+  height: auto;
+  width: auto;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.spinner__circle {
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  background: linear-gradient(to right, #a6bad9, #b45266);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  margin: 6px;
+}
+
 @media (min-width: 768px) {
   .sidebar--top {
     display: none;

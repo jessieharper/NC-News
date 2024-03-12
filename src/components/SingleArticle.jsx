@@ -33,8 +33,6 @@ export default function SingleArticle({ user, error, setError }) {
       });
   }, [articleId]);
 
-  console.log(isLoading);
-
   if (error) {
     const message = error.response.data.msg;
     return <Errors message={message} status={error.response.status} />;
@@ -54,14 +52,7 @@ export default function SingleArticle({ user, error, setError }) {
                   </p>
                 </>
               ) : (
-                <>
-                  <p>
-                    <Skeleton />
-                  </p>
-                  <p>
-                    <Skeleton />
-                  </p>
-                </>
+                <Skeleton count={2} />
               )}
             </div>
             <div className="articles__box--topic">

@@ -7,8 +7,9 @@ const Box = styled.article`
   box-shadow: 10px 15px rgba(33, 32, 32, 0.222);
   padding: 1em;
   margin: 50px auto;
+  margin-top: auto;
   width: 90%;
-  max-width: 500px;
+  max-width: 650px;
   min-height: auto;
   align-self: center;
   justify-content: center;
@@ -27,6 +28,34 @@ const ActiveDislikeButton = styled.button`
   color: rgb(227, 9, 9);
 `;
 
+const spinnerContainerVariants = {
+  start: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+  end: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const spinnerCircleVariants = {
+  start: {
+    y: "0%",
+  },
+  end: {
+    y: "100%",
+  },
+};
+
+const spinnerCircleTransition = {
+  duration: 0.4,
+  yoyo: Infinity,
+  ease: "easeInOut",
+};
+
 const Expandable = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -44,4 +73,13 @@ const Expandable = ({ children }) => {
   );
 };
 // overflow: hidden;
-export { Box, Expandable, ActiveLikeButton, ActiveDislikeButton, CommentBox };
+export {
+  Box,
+  Expandable,
+  ActiveLikeButton,
+  ActiveDislikeButton,
+  CommentBox,
+  spinnerContainerVariants,
+  spinnerCircleVariants,
+  spinnerCircleTransition,
+};

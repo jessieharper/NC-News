@@ -11,18 +11,12 @@ export default function ArticleCard({ article, isLoading }) {
   return (
     <Box id={article.article_id}>
       <Link to={`/articles/${article.article_id}`}>
-        <h3>{article.title || <Skeleton />}</h3>
+        <h3>{article.title}</h3>
         <section className="articles__box--metadata">
-          {!isLoading ? (
-            <>
-              <p>Posted by {article.autho}</p>
-              <p className="articles__box--date">
-                {moment(article.created_at).format("MMM Do YYYY, h:mm a")}
-              </p>
-            </>
-          ) : (
-            <Skeleton />
-          )}
+          <p>Posted by {article.author}</p>
+          <p className="articles__box--date">
+            {moment(article.created_at).format("MMM Do YYYY, h:mm a")}
+          </p>
         </section>
         <img src={article.article_img_url} />
 
@@ -32,11 +26,11 @@ export default function ArticleCard({ article, isLoading }) {
               <>
                 <div className="comment-count">
                   <FontAwesomeIcon icon={faComment} size="xl" />{" "}
-                  {article.comment_count || <Skeleton />}
+                  {article.comment_count}
                 </div>
                 <div className="vote-count">
                   <FontAwesomeIcon icon={faThumbsUp} size="xl" />{" "}
-                  {article.votes || <Skeleton />}
+                  {article.votes}
                 </div>
               </>
             ) : (

@@ -19,6 +19,10 @@
   margin: 1em 0.5em;
 }
 
+.article__body img {
+  margin-bottom: 1.5em;
+}
+
 .articles__box--topic {
   margin-top: 0.5em;
   font-weight: 600;
