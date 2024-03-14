@@ -11,6 +11,7 @@ import PostComment from "./components/PostComment";
 import DeleteComments from "./components/DeleteComments";
 import Errors from "./components/Errors";
 import Sorting from "./components/Sorting";
+import SearchResults from "./components/SearchResults";
 
 export {
   NavBar,
@@ -26,4 +27,5 @@ export {
   DeleteComments,
   Errors,
   Sorting,
+  SearchResults,
 };

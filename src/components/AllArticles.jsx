@@ -17,7 +17,7 @@ export default function AllArticles({
   setError,
 }) {
   const [searchParam, setSearchParam] = useState("");
-  const [order, setOrder] = useState("");
+  const [order, setOrder] = useState("DESC");
   const [articleTitle, setArticleTitle] = useState("All Articles");
   const [isLoading, setIsLoading] = useState(true);
   const { topic } = useParams();

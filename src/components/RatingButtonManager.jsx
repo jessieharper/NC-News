@@ -96,7 +96,7 @@ export default function RatingButtonManager({ articleId, setVoteCounter }) {
           className="article__buttons--like"
           onClick={() => handleLikeClick(1)}
           icon={faThumbsUp}
-          size="lg"
+          size="xl"
         />
       )}
       {isLiked && (
@@ -116,7 +116,7 @@ export default function RatingButtonManager({ articleId, setVoteCounter }) {
           className="article__buttons--dislike"
           onClick={() => handleDislikeClick(-1)}
           icon={faThumbsDown}
-          size="lg"
+          size="xl"
         />
       )}
       {isDisliked && (

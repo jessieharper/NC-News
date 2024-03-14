@@ -5,16 +5,17 @@ import {
   faArrowUp,
   faArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
+import { DropdownListItem } from "./styled-components/StyledComponents";
 
 export default function Sorting({ order, setOrder, setSearchParam }) {
-  const [sortMenu, setSortMenu] = useState("dropdown_menu");
+  const [sortMenu, setSortMenu] = useState("dropdown-list");
   const [sortByText, setSortByText] = useState("Sort by");
 
   const handleSortClick = (e, param) => {
     setSortMenu((currStatus) => {
-      return currStatus === "dropdown_menu"
-        ? "dropdown_menu sort open"
-        : "dropdown_menu";
+      return currStatus === "dropdown-list"
+        ? "dropdown-list show"
+        : "dropdown-list";
     });
 
     if (param) {
@@ -28,25 +29,27 @@ export default function Sorting({ order, setOrder, setSearchParam }) {
   };
 
   return (
-    <section className="articles__header--sort">
-      <button onClick={handleSortClick} className="articles__header--btn">
-        {sortByText} <FontAwesomeIcon icon={faSort} size="lg" />
-      </button>
+    <section>
+      <div className="articles__header--sort">
+        <div className="dropdown sort">
+          <button className="sort--button" onClick={handleSortClick}>
+            {sortByText} <FontAwesomeIcon icon={faSort} size="lg" />
+          </button>
+          <ul className={`${sortMenu} sort`}>
+            <DropdownListItem onClick={(e) => handleSortClick(e, "created_at")}>
+              Date
+            </DropdownListItem>
 
-      <div id="sort_btns" className={sortMenu}>
-        <ul>
-          <button onClick={(e) => handleSortClick(e, "created_at")}>
-            <li>Date</li>
-          </button>
-          <button onClick={(e) => handleSortClick(e, "author")}>
-            <li>Author</li>
-          </button>
-          <button onClick={(e) => handleSortClick(e, "title")}>
-            <li>Title</li>
-          </button>
-        </ul>
+            <DropdownListItem onClick={(e) => handleSortClick(e, "author")}>
+              Author
+            </DropdownListItem>
+
+            <DropdownListItem onClick={(e) => handleSortClick(e, "title")}>
+              Title
+            </DropdownListItem>
+          </ul>
+        </div>
       </div>
-
       <form className="articles__header--toggle">
         <input
           type="radio"

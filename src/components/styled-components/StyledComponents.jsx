@@ -23,9 +23,30 @@ const CommentBox = styled(Box)`
 
 const ActiveLikeButton = styled.button`
   color: rgb(11, 81, 26);
+  background-color: transparent;
+  border: 1px transparent;
+  padding-right: 0.2em;
+  cursor: pointer;
 `;
 const ActiveDislikeButton = styled.button`
   color: rgb(227, 9, 9);
+  background-color: transparent;
+  border: 1px transparent;
+  padding-right: 0.2em;
+  cursor: pointer;
+`;
+
+const DropdownListItem = styled.li`
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 15px;
+  padding: 1rem 0 1rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.3s ease, margin-left 0.2s ease;
+  &: hover {
+    margin-left: 0.5rem;
+    color: rgb(179, 94, 115);
+  }
 `;
 
 const spinnerContainerVariants = {
@@ -43,7 +64,7 @@ const spinnerContainerVariants = {
 
 const spinnerCircleVariants = {
   start: {
-    y: "0%",
+    y: "50%",
   },
   end: {
     y: "100%",
@@ -51,8 +72,9 @@ const spinnerCircleVariants = {
 };
 
 const spinnerCircleTransition = {
-  duration: 0.4,
-  yoyo: Infinity,
+  duration: 0.6,
+  repeat: Infinity,
+  repeatType: "loop",
   ease: "easeInOut",
 };
 
@@ -72,7 +94,7 @@ const Expandable = ({ children }) => {
     </div>
   );
 };
-// overflow: hidden;
+
 export {
   Box,
   Expandable,
@@ -82,4 +104,5 @@ export {
   spinnerContainerVariants,
   spinnerCircleVariants,
   spinnerCircleTransition,
+  DropdownListItem,
 };

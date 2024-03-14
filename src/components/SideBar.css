@@ -19,14 +19,11 @@
   position: fixed;
   margin-top: 2.5em;
   height: 100vh;
-  width: 150px;
+  width: 180px;
   background-color: rgba(240, 248, 255, 0.325);
   backdrop-filter: blur(1em);
   border-right: 1px solid white;
-}
-
-.sidebar--side h3 li {
-  text-align: right;
+  text-align: center;
 }
 
 .sidebar--topics {
@@ -49,10 +46,15 @@
   color: rgb(0, 0, 0);
   font-weight: 500;
   font-size: 1.2em;
+  cursor: pointer;
 }
 
 .sidebar--topics a:hover {
   color: #b45266;
+}
+
+.sidebar--arrow {
+  cursor: pointer;
 }
 
 .topics {
@@ -67,25 +69,6 @@
 .topics a {
   color: aliceblue;
   font-size: 1em;
-}
-
-.spinner__container {
-  height: auto;
-  width: auto;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-}
-
-.spinner__circle {
-  border-radius: 50%;
-  height: 15px;
-  width: 15px;
-  background: linear-gradient(to right, #a6bad9, #b45266);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-
-  margin: 6px;
 }
 
 @media (min-width: 768px) {
