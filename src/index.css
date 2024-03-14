@@ -79,6 +79,10 @@
   cursor: pointer;
 }
 
+.dropdown.search {
+  min-width: 136px;
+}
+
 .dropdown.sort {
   border: 2px solid;
   margin-top: 15px;

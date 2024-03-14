@@ -53,8 +53,20 @@ export const fetchAllTopics = () => {
   });
 };
 
-export const search = (query) => {
-  return myApi.get(`/search?q=${query}`).then((response) => {
+export const searchArticles = (query) => {
+  return myApi.get(`/articles/search?q=${query}`).then((response) => {
+    return response.data.search_results;
+  });
+};
+
+export const searchTopics = (query) => {
+  return myApi.get(`/topics/search?q=${query}`).then((response) => {
+    return response.data.search_results;
+  });
+};
+
+export const searchUsers = (query) => {
+  return myApi.get(`/users/search?q=${query}`).then((response) => {
     return response.data.search_results;
   });
 };

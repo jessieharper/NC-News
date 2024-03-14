@@ -5,7 +5,7 @@ import {
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import "./SearchBar.css";
-import { search } from "../../utils/utils";
+import { searchArticles, searchTopics, searchUsers } from "../../utils/utils";
 import { DropdownListItem } from "./styled-components/StyledComponents";
 import { SearchResults } from "../index";
 
@@ -13,11 +13,25 @@ export default function SearchBar() {
   const [listDisplay, setListDisplay] = useState("dropdown-list");
   const [searchResults, setSearchResults] = useState([]);
   const [isSearchActive, setIsSearchActive] = useState(false);
+  const [searchCategory, setSearchCategory] = useState("Articles");
 
   const handleChange = (e) => {
-    search(e.target.value).then((result) => {
-      setSearchResults(result);
-    });
+    switch (searchCategory) {
+      case "Topics":
+        searchTopics(e.target.value).then((result) => {
+          setSearchResults(result);
+        });
+        break;
+      case "Users":
+        searchUsers(e.target.value).then((result) => {
+          setSearchResults(result);
+        });
+        break;
+      default:
+        searchArticles(e.target.value).then((result) => {
+          setSearchResults(result);
+        });
+    }
     if (e.target.value === "") setIsSearchActive(false);
     else setIsSearchActive(true);
   };
@@ -32,15 +46,36 @@ export default function SearchBar() {
 
   return (
     <section className="header__search-bar">
-      <div className="dropdown">
+      <div className="dropdown search">
         <div id="drop-text" className="dropdown-text" onClick={handleClick}>
-          <span>Articles</span>
+          <span>{searchCategory}</span>
           <FontAwesomeIcon id="icon" icon={faChevronDown} />
         </div>
         <ul className={listDisplay}>
-          <DropdownListItem>Articles</DropdownListItem>
-          <DropdownListItem>Users</DropdownListItem>
-          <DropdownListItem>Topics</DropdownListItem>
+          <DropdownListItem
+            onClick={() => {
+              handleClick();
+              setSearchCategory("Articles");
+            }}
+          >
+            Articles
+          </DropdownListItem>
+          <DropdownListItem
+            onClick={() => {
+              handleClick();
+              setSearchCategory("Users");
+            }}
+          >
+            Users
+          </DropdownListItem>
+          <DropdownListItem
+            onClick={() => {
+              handleClick();
+              setSearchCategory("Topics");
+            }}
+          >
+            Topics
+          </DropdownListItem>
         </ul>
       </div>
 
@@ -54,6 +89,7 @@ export default function SearchBar() {
         <SearchResults
           searchResults={searchResults}
           isSearchActive={isSearchActive}
+          searchCategory={searchCategory}
         />
       </div>
     </section>
