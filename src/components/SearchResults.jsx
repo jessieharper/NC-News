@@ -2,7 +2,11 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { DropdownListItem } from "./styled-components/StyledComponents";
 
-export default function SearchResults({ searchResults, isSearchActive }) {
+export default function SearchResults({
+  searchResults,
+  isSearchActive,
+  searchCategory,
+}) {
   const [isListOpen, setIsListOpen] = useState(false);
 
   const handleClick = () => {
@@ -24,10 +28,25 @@ export default function SearchResults({ searchResults, isSearchActive }) {
           )}
           {searchResults.map((result) => {
             return (
-              <DropdownListItem onClick={handleClick} key={result.article_id}>
-                <Link to={`/articles/${result.article_id}`}>
-                  {result.title} by {result.author}
-                </Link>
+              <DropdownListItem
+                onClick={handleClick}
+                key={
+                  searchCategory === "Articles"
+                    ? result.article_id
+                    : searchCategory === "Topics"
+                    ? result.slug
+                    : result.username
+                }
+              >
+                {searchCategory === "Articles" && (
+                  <Link to={`/articles/${result.article_id}`}>
+                    {result.title} by {result.author}
+                  </Link>
+                )}
+                {searchCategory === "Topics" && (
+                  <Link to={`/articles`}>#{result.slug}</Link>
+                )}
+                {searchCategory === "Users" && <>{result.username}</>}
               </DropdownListItem>
             );
           })}
