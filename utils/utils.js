@@ -52,3 +52,9 @@ export const fetchAllTopics = () => {
     return response.data.topics;
   });
 };
+
+export const search = (query) => {
+  return myApi.get(`/search?q=${query}`).then((response) => {
+    return response.data.search_results;
+  });
+};

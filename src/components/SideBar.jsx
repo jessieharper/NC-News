@@ -9,12 +9,8 @@ import {
   faHashtag,
   faNewspaper,
 } from "@fortawesome/free-solid-svg-icons";
-import { motion } from "framer-motion";
-import {
-  spinnerCircleVariants,
-  spinnerContainerVariants,
-  spinnerCircleTransition,
-} from "./styled-components/StyledComponents";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import "./SideBar.css";
 
 export default function SideBar() {
@@ -58,28 +54,7 @@ export default function SideBar() {
               Topics <FontAwesomeIcon icon={faNewspaper} />
             </h3>
             {isLoading ? (
-              <motion.div
-                className="spinner__container"
-                variants={spinnerContainerVariants}
-                initial="start"
-                animate="end"
-              >
-                <motion.span
-                  className="spinner__circle"
-                  variants={spinnerCircleVariants}
-                  transition={spinnerCircleTransition}
-                />
-                <motion.span
-                  className="spinner__circle"
-                  variants={spinnerCircleVariants}
-                  transition={spinnerCircleTransition}
-                />
-                <motion.span
-                  className="spinner__circle"
-                  variants={spinnerCircleVariants}
-                  transition={spinnerCircleTransition}
-                />
-              </motion.div>
+              <Skeleton count={3} />
             ) : (
               <ul>
                 {allTopics.map((topic) => {
@@ -101,6 +76,7 @@ export default function SideBar() {
         )}
         {!isLargeScreen && (
           <FontAwesomeIcon
+            className="sidebar--arrow"
             onClick={handleClick}
             icon={arrowDirection}
             size="lg"

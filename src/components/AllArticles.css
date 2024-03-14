@@ -1,6 +1,6 @@
 .spinner__container--articles {
   width: 100%;
-  height: 50vh;
+  height: 40vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,4 +18,75 @@
 
 .articles__header {
   padding-bottom: 2em;
+}
+
+.articles__header--btn {
+  float: left;
+  border: 1px solid;
+  border-radius: 0.2em;
+  padding: 1%;
+  background-color: rgba(255, 255, 255, 0.411);
+  transition: all 0.2s ease-out;
+  margin-left: 15px;
+  margin-right: 2%;
+  width: auto;
+}
+
+.articles__header--sort {
+  width: auto;
+  max-width: 170px;
+  margin-inline: auto;
+  padding-left: 12px;
+  flex-direction: row;
+  text-align: center;
+  margin-bottom: 1em;
+  justify-items: center;
+}
+
+.articles__header--toggle {
+  max-width: 350px;
+  width: 100vw;
+  margin-top: 20px;
+  font-size: 1em;
+  text-align: center;
+  margin-inline: auto;
+}
+
+.articles__header--toggle input {
+  cursor: pointer;
+}
+
+.sort--button {
+  outline: none;
+  background-color: transparent;
+  border: none;
+  margin-top: 6px;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.article__buttons {
+  float: right;
+  margin-top: -1.55em;
+}
+
+.article__buttons--like {
+  cursor: pointer;
+  padding-right: 0.2em;
+  transition: all 0.5s ease-in-out;
+}
+
+.article__buttons--like:hover {
+  transform: translateY(-5px);
+  transition: all 0.4s ease-in-out;
+}
+
+.article__buttons--dislike {
+  cursor: pointer;
+  padding-right: 0.2em;
+}
+
+.article__buttons--dislike:hover {
+  transform: translateY(-5px);
+  transition: all 0.4s ease-in-out;
 }
