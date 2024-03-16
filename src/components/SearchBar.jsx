@@ -18,17 +18,17 @@ export default function SearchBar() {
   const handleChange = (e) => {
     switch (searchCategory) {
       case "Topics":
-        searchTopics(e.target.value).then((result) => {
+        searchTopics(e.target.value + ":*").then((result) => {
           setSearchResults(result);
         });
         break;
       case "Users":
-        searchUsers(e.target.value).then((result) => {
+        searchUsers(e.target.value + ":*").then((result) => {
           setSearchResults(result);
         });
         break;
       default:
-        searchArticles(e.target.value).then((result) => {
+        searchArticles(e.target.value + ":*").then((result) => {
           setSearchResults(result);
         });
     }
