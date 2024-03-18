@@ -60,14 +60,14 @@ export default function SearchBar() {
           >
             Articles
           </DropdownListItem>
-          <DropdownListItem
+          {/* <DropdownListItem
             onClick={() => {
               handleClick();
               setSearchCategory("Users");
             }}
           >
             Users
-          </DropdownListItem>
+          </DropdownListItem> */}
           <DropdownListItem
             onClick={() => {
               handleClick();

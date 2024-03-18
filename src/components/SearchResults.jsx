@@ -44,7 +44,9 @@ export default function SearchResults({
                   </Link>
                 )}
                 {searchCategory === "Topics" && (
-                  <Link to={`/articles`}>#{result.slug}</Link>
+                  <Link to={`/articles/topics/${result.slug}`}>
+                    #{result.slug}
+                  </Link>
                 )}
                 {searchCategory === "Users" && <>{result.username}</>}
               </DropdownListItem>
